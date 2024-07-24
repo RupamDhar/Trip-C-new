@@ -1,0 +1,243 @@
+.find-ride-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    width: 95%;
+    padding: 0;
+    border-radius: 20px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.label {
+    padding-left: 10px;
+    color: #797979;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.ride-categories {
+    display: none;
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    font-family: Quicksand;
+}
+
+select {
+    appearance: none;
+    max-width: 180px;
+}
+
+.ride-category {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ride-category-input {
+    height: 30px;
+    fill: yellow;
+    color: yellow;
+    background-color: yellow;
+}
+
+.ride-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 95px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 3px 4px 5px rgb(0, 0, 0, 0.4);
+    color: black;
+    background-color: white;
+}
+
+.location-input,
+.date-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid rgb(236, 235, 235);
+    background-color: rgb(236, 235, 235);
+}
+.input {
+    flex-grow: 1;
+    margin-left: 10px;
+    background-color: rgb(236, 235, 235);
+}
+
+.ride-selection-detail {
+    width: 20%;
+    height: 100%;
+    padding: 13px 19px 28px;
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.rsd-one,
+.rsd-two,
+.rsd-three,
+.rsd-four {
+    border-right: 1px solid #c9c9c979;
+}
+
+.selection-header,
+.time-select-outstation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #797979;
+}
+
+.time-select-outstation {
+    width: fit-content;
+    margin-top: 5px;
+    border-bottom: 1px solid yellow;
+}
+
+.city-select,
+.time-select,
+.duration-select,
+.cartype-select {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.city-options,
+.time-options,
+.duration-options,
+.cartype-options {
+    font-size: 16px;
+}
+
+.time-select:focus,
+.date-picker:focus,
+.duration-select:focus,
+.cartype-select:focus {
+    outline: none;
+}
+
+.date-picker {
+    width: 140px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+select::-webkit-scrollbar {
+    width: 0;
+}
+
+.detail-sub-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.car-info {
+    font-size: 12px;
+    font-weight: 600;
+    color: #797979;
+}
+
+.find-ride-btn {
+    /* position: absolute;
+    bottom: -26px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 55px;
+    width: 210px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    background-color: var(--theme-yellow);
+    transition: all 0.2s ease-in-out;
+}
+.find-ride-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px #7979797c;
+}
+
+.offer {
+    margin-top: 20px;
+    display: flex;
+}
+
+@media(max-width:1080px) {
+    .ride-categories {
+        flex: 0 0 25%;
+        gap: 5px;
+    }
+
+    .ride-category {
+        padding: 5px 8px;
+        width: 40%;
+        flex-grow: 1;
+        font-size: 11px;
+        background-color: #ececec;
+        border-radius: 8px;
+    }
+
+    .label {
+        padding-left: 4px;
+    }
+
+    .find-ride-section {
+        padding: 15px 15px 40px;
+    }
+
+    .offer {
+        display: none;
+    }
+
+    .ride-selection {
+        height: fit-content;
+        box-shadow: none;
+        gap: 10px;
+        flex-direction: column;
+    }
+    .find-ride-btn {
+        width: 90%;
+    }
+
+    .ride-selection-detail {
+        width: 100%;
+        padding: 5px 10px;
+        border: none;
+        border: 1px solid #79797920;
+    }
+
+    select,
+    .date-picker {
+        background-color: white;
+    }
+
+    .selection-header {
+        font-size: 10px;
+    }
+
+    .city-select,
+    .time-select,
+    .duration-select,
+    .cartype-select,
+    .date-picker {
+        font-size: 16px;
+        font-weight: 700;
+    }
+}

@@ -1,0 +1,33 @@
+.company-stats-section {
+    position: relative;
+    color: white;
+}
+
+.company-stats-section > img {
+    z-index: -9999;
+}
+.stats-wrapper {
+    position: absolute;
+    top: 15%;
+    left: 12%;
+}
+.company-stat {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 40px;
+}
+.stat-detail-header {
+    font-size: 34px;
+    font-weight: 700;
+}
+.stat-detail-sub-header {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+@media(max-width:1080px) {
+    .company-stats-section {
+        display: none;
+    }
+}
