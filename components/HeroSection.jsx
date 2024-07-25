@@ -20,7 +20,7 @@ const HeroSection = () => {
     })
 
     return (
-        <div className='bg-[rgb(240,240,240)] box-border w-[100vw]'>
+        <div className='bg-[rgb(240,240,240)] box-border overflow-hidden w-[100vw]'>
             <div className="hero-section">
                 {/* <div className="hero-section-stats-wrapper flex justify-between mb-[55px] h-fit w-[80%] sm-max:flex-wrap sm-max:justify-evenly sm-max:w-full sm-max:mb-[30px]">
                     <div className="hero-section-stat border-r border-[#797979] flex-grow sm-max:border-none sm-max:flex-grow-0 s-one">
