@@ -18,7 +18,7 @@ const Navbar = () => {
             </div>
             <div className="nav-interact">
                 <div className="nav-hrefs-wrapper">
-                    <div className="nav-hrefs" style={{ color: '#dc635b' }}>
+                    <div className="nav-hrefs">
                         <img src="https://www.carzonrent.com/webcor/images/icons/discount-icon.svg" alt="Discount Icon" />
                         Travel Packages
                     </div>
