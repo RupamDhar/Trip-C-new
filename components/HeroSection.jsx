@@ -43,7 +43,7 @@ const HeroSection = () => {
                         <div className="stat-sub-header text-[18px] font-bold text-center sm-max:text-[14px]">Servicing Cities</div>
                     </div>
                 </div> */}
-                <span className='text-[42px] text-[#222222] font-semibold mt-[-50px] sm-max:mt-[100px]' data-aos='fade-up'>Find Your Ride</span>
+                <span className='text-[42px] text-[#222222] mb-[10px] font-semibold mt-[40px] sm-max:mt-[100px]' data-aos='fade-up'>Find Your Ride</span>
                 <FindYourRide />
             </div>
             <TravelExperience />

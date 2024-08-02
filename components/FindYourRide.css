@@ -4,11 +4,12 @@
     flex-direction: column;
     align-items: center;
     height: fit-content;
-    width: 95%;
-    padding: 0;
+    width: 90%;
+    padding: 30px 0;
     border-radius: 20px;
     color: black;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 3px 4px 5px rgb(0, 0, 0, 0.4);
 }
 
 .label {
@@ -20,10 +21,11 @@
 
 .ride-categories {
     display: none;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 40px;
     font-family: Quicksand;
@@ -50,19 +52,20 @@ select {
 .ride-selection {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    width: 90%;
-    height: 95px;
+    width: 95%;
+    height: fit-content;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 3px 4px 5px rgb(0, 0, 0, 0.4);
     color: black;
     background-color: white;
 }
 
 .location-input,
-.date-input {
+.date-input,
+.time-input,
+.package-input {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,7 +84,7 @@ select {
 .ride-selection-detail {
     width: 20%;
     height: 100%;
-    padding: 13px 19px 28px;
+    padding: 0 19px;
     flex-grow: 1;
     cursor: pointer;
 }
@@ -90,14 +93,15 @@ select {
 .rsd-two,
 .rsd-three,
 .rsd-four {
-    border-right: 1px solid #c9c9c979;
+    border-right: 1px solid #c9c9c900;
 }
 
 .selection-header,
 .time-select-outstation {
     display: flex;
     gap: 10px;
-    margin-bottom: 8px;
+    padding-left: 10px;
+    margin-bottom: 4px;
     font-size: 12px;
     font-weight: 600;
     color: #797979;
@@ -160,6 +164,8 @@ select::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    /* margin-top: 20px; */
+    margin-bottom: -60px;
     height: 55px;
     width: 210px;
     font-size: 18px;
@@ -171,7 +177,7 @@ select::-webkit-scrollbar {
 }
 .find-ride-btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 5px #7979797c;
+    box-shadow: 0 5px 5px #181818da;
 }
 
 .offer {

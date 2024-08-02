@@ -9,6 +9,34 @@ const FindYourRide = () => {
 
     useEffect(() => {
         AOS.init({ duration: 1000 });
+
+
+        /* console.log(navigator.geolocation.getCurrentPosition(
+            (position) => {
+                console.log(position);
+            },
+            (error) => {
+                console.log(error);
+            }
+        ));
+
+        async function fetchdata() {
+            try {
+                const data = await fetch('https://apihub.latlong.ai/v4/landmarks.json?latitude=19.163051&longitude=72.839485', {
+                    mode: 'no-cors',
+                    headers: {
+                        'X-Authorization-Token': ''
+                    }
+                });
+                const result = await data.json();
+                console.log(result);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        fetchdata(); */
+
     }, []);
 
     const [selectedOption, setSelectedOption] = useState('Outstation Travel');
@@ -20,7 +48,7 @@ const FindYourRide = () => {
 
     return (
         <div className="find-ride-section" data-aos='fade-up' data-aos-delay='200'>
-            <div className="ride-categories hidden">
+            <div className="ride-categories">
                 <div className="ride-category ">
                     <input
                         type="radio"
@@ -71,7 +99,13 @@ const FindYourRide = () => {
                 </div>
             </div>
 
-            <OutStationTravel />
+            {selectedOption === 'Local' && <LocalRideSelect />}
+
+            {selectedOption === 'Outstation Travel' && <OutStationTravel />}
+
+            {selectedOption === 'Airport Transfer' && <AirportTranfer />}
+
+            {selectedOption === 'Long Term Rentals' && <LongTermRentals />}
 
             <a href="/outstation" className='offer hidden'>
                 <img src="https://www.carzonrent.com/webcor/images/icons/percent-discount.svg" alt="" />
@@ -80,10 +114,8 @@ const FindYourRide = () => {
                 on your next Outstation Booking.
             </a>
 
-            <button className='find-ride-btn hidden'>
-                <img src="	https://www.carzonrent.com/webcor/images/icons/searchiconblack.svg" alt="" />
-                Find Your Ride
-            </button>
+
+            <button className="find-ride-btn">Find Your Ride</button>
         </div>
     )
 }
@@ -134,74 +166,63 @@ const LocalRideSelect = () => {
     const selectedCarType = carTypes.find((cartype) => cartype.type === selectedType);
 
     return (
-        <div className="ride-selection  flex flex-wrap justify-center items-center w-full h-[130px] rounded-lg shadow-md text-black bg-white sm-max:shadow-none sm-max:h-[fit-content] sm-max:gap-2">
+        <div className="ride-selection">
             <div className="ride-selection-detail rsd-one">
-                <div className="city selection-header text-xs font-bold text-center flex gap-2 mb-2 font-semibold text-[#7e7e7e]">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/maplocation.svg" alt="" />
-                    City
+                <div className="city selection-header">
+                    Pickup City
                 </div>
-                <select className='bg-white city-select text-2xl font-bold sm-max:text-[16px]' name="city" id="">
-                    {cities.map((city, index) => (
-                        <option className='city-options' value={city} key={index}>{city}</option>
-                    ))}
-                </select>
+                <div className="location-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input' placeholder='From Station' /> */}
+                    <select className='input' name="city" id="">
+                        {cities.map((city, index) => (
+                            <option className='city-options' value={city} key={index}>{city}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
 
             <div className="ride-selection-detail rsd-two">
                 <div className="datepicker selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" alt="" />
                     Pickup Date
                 </div>
-                <DatePicker
-                    className='date-picker text-2xl font-bold sm-max:text-[16px] w-32'
-                    selected={selectedDate}
-                    dateFormat='dd MMM, yy'
-                    onChange={date => setSelectedDate(date)}
-                />
+                <div className="date-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
+                    <DatePicker
+                        className='input ml-2'
+                        selected={selectedDate}
+                        onChange={date => setSelectedDate(date)}
+                    />
+                </div>
             </div>
 
             <div className="ride-selection-detail rsd-three">
                 <div className="time selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/clocktime.svg" alt="" />
                     Pickup Time
                 </div>
-                <select className='bg-white time-select text-2xl font-bold sm-max:text-[16px]' name="time" id="">
-                    {timestamps.map((time, index) => (
-                        <option className='time-options text-base font-bold' value={time} key={index}>{time}</option>
-                    ))}
-                </select>
+                <div className="time-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/clocktime.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input' placeholder='To Station' /> */}
+                    <select className='input' name="time" id="">
+                        {timestamps.map((time, index) => (
+                            <option className='city-options' value={time} key={index}>{time}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
             <div className="ride-selection-detail rsd-four">
                 <div className="duration selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/packageicon.svg" alt="" />
                     Package
                 </div>
-                <select className='bg-white duration-select  text-2xl font-bold sm-max:text-[16px]' name="duration" id="">
-                    {durations.map((duration, index) => (
-                        <option className='duration-options text-base font-bold' value={duration} key={index}>{duration} Hours</option>
-                    ))}
-                </select>
-            </div>
-
-            <div className="ride-selection-detail rsd-five">
-                <div className="cartype selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/cartypegredient.svg" alt="" />
-                    Car Type
+                <div className="package-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/packageicon.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input' placeholder='To Station' /> */}
+                    <select className='input' name="duration" id="">
+                        {durations.map((duration, index) => (
+                            <option className='city-options' value={duration} key={index}>{duration} Hours</option>
+                        ))}
+                    </select>
                 </div>
-                <select className='bg-white cartype-select text-2xl font-bold sm-max:text-[16px]' name="cartype" onChange={handleSelectChange} value={selectedType}>
-                    <option value="">Select Type</option>
-                    {carTypes.map((cartype, index) => (
-                        <option className='cartype-options text-base font-bold' value={cartype.type} key={index}>
-                            {cartype.type}
-                        </option>
-                    ))}
-                </select>
-                {selectedCarType && (
-                    <div className='detail-sub-info flex justify-between items-center'>
-                        <span className='car-info text-xs font-semibold text-gray-600 mt-2'>{selectedCarType.car}</span>
-                        <span className='car-info text-xs font-semibold text-gray-600 mt-2'>{selectedCarType.capacity}</span>
-                    </div>
-                )}
             </div>
         </div>
     )
@@ -255,34 +276,62 @@ const OutStationTravel = () => {
     return (
         <>
             <div className="ride-selection">
-                <div className="location-input">
-                    <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
-                    {/* <input type="text" className='input' placeholder='From Station' /> */}
-                    <select className='input' name="city" id="">
-                        {citiesFrom.map((city, index) => (
-                            <option className='city-options' value={city} key={index}>{city}</option>
-                        ))}
-                    </select>
+                <div className="ride-selection-detail rsd-four">
+                    <div className="duration selection-header">
+                        Pickup Location
+                    </div>
+                    <div className="location-input">
+                        <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
+                        {/* <input type="text" className='input' placeholder='From Station' /> */}
+                        <select className='input' name="city" id="">
+                            {citiesFrom.map((city, index) => (
+                                <option className='city-options' value={city} key={index}>{city}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
                 <i className="fa-solid fa-right-left text-slate-400"></i>
-                <div className="location-input">
-                    <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
-                    {/* <input type="text" className='input' placeholder='To Station' /> */}
-                    <select className='input' name="city" id="">
-                        {citiesTo.map((city, index) => (
-                            <option className='city-options' value={city} key={index}>{city}</option>
-                        ))}
-                    </select>
+                <div className="ride-selection-detail rsd-four">
+                    <div className="duration selection-header">
+                        Drop Location
+                    </div>
+                    <div className="location-input">
+                        <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
+                        {/* <input type="text" className='input' placeholder='To Station' /> */}
+                        <select className='input' name="city" id="">
+                            {citiesTo.map((city, index) => (
+                                <option className='city-options' value={city} key={index}>{city}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-                <div className="date-input">
-                    <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
-                    <DatePicker
-                        className='input ml-2'
-                        selected={pickupDate}
-                        onChange={date => setPickupDate(date)}
-                    />
+                <div className="ride-selection-detail rsd-four">
+                    <div className="duration selection-header">
+                        Pickup Date
+                    </div>
+                    <div className="date-input">
+                        <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
+                        <DatePicker
+                            className='input ml-2'
+                            selected={pickupDate}
+                            onChange={date => setPickupDate(date)}
+                        />
+                    </div>
                 </div>
-                <button className="find-ride-btn">Find Your Ride</button>
+                <div className="ride-selection-detail rsd-four">
+                    <div className="duration selection-header">
+                        Pickup Time
+                    </div>
+                    <div className="time-input">
+                        <img src="https://www.carzonrent.com/webcor/images/icons/clocktime.svg" className='h-[16px]' alt="" />
+                        {/* <input type="text" className='input' placeholder='To Station' /> */}
+                        <select className='input' name="time" id="">
+                            {timestamps.map((time, index) => (
+                                <option className='city-options' value={time} key={index}>{time}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
             </div>
         </>
     )
@@ -331,74 +380,63 @@ const AirportTranfer = () => {
     const selectedCarType = carTypes.find((cartype) => cartype.type === selectedType);
 
     return (
-        <div className="ride-selection  flex flex-wrap justify-center items-center w-full h-32 rounded-lg shadow-md text-black bg-white sm-max:shadow-none sm-max:h-[fit-content] sm-max:gap-2">
+        <div className="ride-selection">
             <div className="ride-selection-detail rsd-one">
                 <div className="city selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/maplocation.svg" alt="" />
-                    City
+                    Pickup City
                 </div>
-                <select className='bg-white city-select text-2xl font-bold sm-max:text-[16px]' name="city" id="">
-                    {cities.map((city, index) => (
-                        <option className='city-options' value={city} key={index}>{city}</option>
-                    ))}
-                </select>
+                <div className="location-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input' placeholder='From Station' /> */}
+                    <select className='input' name="city" id="">
+                        {cities.map((city, index) => (
+                            <option className='city-options' value={city} key={index}>{city}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
 
             <div className="ride-selection-detail rsd-two">
                 <div className="datepicker selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" alt="" />
                     Pickup Date
                 </div>
-                <DatePicker
-                    className='date-picker text-2xl font-bold sm-max:text-[16px] w-32 text-2xl font-bold sm-max:text-[16px]'
-                    selected={selectedDate}
-                    dateFormat='dd MMM, yy'
-                    onChange={date => setSelectedDate(date)}
-                />
+                <div className="date-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
+                    <DatePicker
+                        className='input ml-2'
+                        selected={selectedDate}
+                        onChange={date => setSelectedDate(date)}
+                    />
+                </div>
             </div>
 
             <div className="ride-selection-detail rsd-three">
                 <div className="time selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/clocktime.svg" alt="" />
                     Pickup Time
                 </div>
-                <select className='bg-white time-select text-2xl font-bold sm-max:text-[16px]' name="time" id="">
-                    {timestamps.map((time, index) => (
-                        <option className='time-options' value={time} key={index}>{time}</option>
-                    ))}
-                </select>
+                <div className="time-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/clocktime.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input' placeholder='To Station' /> */}
+                    <select className='input' name="time" id="">
+                        {timestamps.map((time, index) => (
+                            <option className='city-options' value={time} key={index}>{time}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
             <div className="ride-selection-detail rsd-four">
                 <div className="duration selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/packageicon.svg" alt="" />
                     Package
                 </div>
-                <select className='bg-white duration-select  text-2xl font-bold sm-max:text-[16px]' name="duration" id="">
-                    {durations.map((duration, index) => (
-                        <option className='duration-options' value={duration} key={index}>{duration} Hours</option>
-                    ))}
-                </select>
-            </div>
-
-            <div className="ride-selection-detail rsd-five">
-                <div className="cartype selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/cartypegredient.svg" alt="" />
-                    Car Type
+                <div className="package-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/packageicon.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input' placeholder='To Station' /> */}
+                    <select className='input' name="duration" id="">
+                        {durations.map((duration, index) => (
+                            <option className='city-options' value={duration} key={index}>{duration} Hours</option>
+                        ))}
+                    </select>
                 </div>
-                <select className='bg-white cartype-select text-2xl font-bold sm-max:text-[16px]' name="cartype" onChange={handleSelectChange} value={selectedType}>
-                    <option value="">Select Type</option>
-                    {carTypes.map((cartype, index) => (
-                        <option className='cartype-options text-base font-bold' value={cartype.type} key={index}>
-                            {cartype.type}
-                        </option>
-                    ))}
-                </select>
-                {selectedCarType && (
-                    <div className='detail-sub-info flex justify-between items-center'>
-                        <span className='car-info text-xs font-semibold text-gray-600 mt-2'>{selectedCarType.car}</span>
-                        <span className='car-info text-xs font-semibold text-gray-600 mt-2'>{selectedCarType.capacity}</span>
-                    </div>
-                )}
             </div>
         </div>
     )
@@ -448,76 +486,63 @@ const LongTermRentals = () => {
     const selectedCarType = carTypes.find((cartype) => cartype.type === selectedType);
 
     return (
-        <div className="ride-selection  flex flex-wrap justify-center items-center w-full h-32 rounded-lg shadow-md text-black bg-white sm-max:shadow-none sm-max:h-[fit-content] sm-max:gap-2">
+        <div className="ride-selection">
             <div className="ride-selection-detail rsd-one">
                 <div className="city selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/maplocation.svg" alt="" />
-                    City
+                    Pickup City
                 </div>
-                <select className='bg-white city-select text-2xl font-bold sm-max:text-[16px]' name="city" id="">
-                    {cities.map((city, index) => (
-                        <option className='city-options' value={city} key={index}>{city}</option>
-                    ))}
-                </select>
+                <div className="location-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input' placeholder='From Station' /> */}
+                    <select className='input' name="city" id="">
+                        {cities.map((city, index) => (
+                            <option className='city-options' value={city} key={index}>{city}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
 
             <div className="ride-selection-detail rsd-three">
                 <div className="pickup-date selection-header">
-                    <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" alt="" />
                     Pickup Date
                 </div>
-                <DatePicker
-                    className='date-picker text-2xl font-bold sm-max:text-[16px] w-32 text-2xl font-bold sm-max:text-[16px]'
-                    selected={pickupDate}
-                    dateFormat='dd MMM, yy'
-                    onChange={date => setPickupDate(date)}
-                />
+                <div className="date-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
+                    <DatePicker
+                        className='input ml-2'
+                        selected={pickupDate}
+                        onChange={date => setPickupDate(date)}
+                    />
+                </div>
             </div>
 
             <div className="ride-selection-detail rsd-four">
                 <div className="return-date selection-header">
-                    <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" alt="" />
                     Return Date
                 </div>
-                <DatePicker
-                    className='date-picker text-2xl font-bold sm-max:text-[16px] w-32 text-2xl font-bold sm-max:text-[16px]'
-                    selected={returnDate}
-                    dateFormat='dd MMM, yy'
-                    onChange={date => setReturnDate(date)}
-                />
+                <div className="date-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
+                    <DatePicker
+                        className='input ml-2'
+                        selected={returnDate}
+                        onChange={date => setReturnDate(date)}
+                    />
+                </div>
             </div>
 
             <div className="ride-selection-detail rsd-three">
                 <div className="time selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/clocktime.svg" alt="" />
                     Pickup Time
                 </div>
-                <select className='bg-white time-select text-2xl font-bold sm-max:text-[16px]' name="time" id="">
-                    {timestamps.map((time, index) => (
-                        <option className='time-options' value={time} key={index}>{time}</option>
-                    ))}
-                </select>
-            </div>
-
-            <div className="ride-selection-detail rsd-five">
-                <div className="cartype selection-header">
-                    <img src="	https://www.carzonrent.com/webcor/images/icons/cartypegredient.svg" alt="" />
-                    Car Type
+                <div className="time-input">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/clocktime.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input' placeholder='To Station' /> */}
+                    <select className='input' name="time" id="">
+                        {timestamps.map((time, index) => (
+                            <option className='city-options' value={time} key={index}>{time}</option>
+                        ))}
+                    </select>
                 </div>
-                <select className='bg-white cartype-select text-2xl font-bold sm-max:text-[16px]' name="cartype" onChange={handleSelectChange} value={selectedType}>
-                    <option value="">Select Type</option>
-                    {carTypes.map((cartype, index) => (
-                        <option className='cartype-options text-base font-bold' value={cartype.type} key={index}>
-                            {cartype.type}
-                        </option>
-                    ))}
-                </select>
-                {selectedCarType && (
-                    <div className='detail-sub-info flex justify-between items-center'>
-                        <span className='car-info text-xs font-semibold text-gray-600 mt-2'>{selectedCarType.car}</span>
-                        <span className='car-info text-xs font-semibold text-gray-600 mt-2'>{selectedCarType.capacity}</span>
-                    </div>
-                )}
             </div>
         </div>
     )
