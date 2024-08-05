@@ -13,6 +13,8 @@ import Footer from '../components/Footer';
 import './App.css';
 import HospitalityTravel from '../components/HospitalityTravel';
 import ScrollToTop from '../components/ScrollToTop';
+import RideDetails from '../components/RideDetails';
+import FinalDetails from '../components/FinalDetails';
 
 function App() {
     return (
@@ -28,6 +30,8 @@ function App() {
                 <Route path='/hospitalitytravel' element={<HospitalityTravel/>} />
                 <Route path='/aboutus' element={<AboutUs />} />
                 <Route path='/contactus' element={<ContactForm />} />
+                <Route path='/ridedetails' element={<RideDetails />} />
+                <Route path='/finaldetails' element={<FinalDetails />} />
             </Routes>
 
             {/* About Us */}

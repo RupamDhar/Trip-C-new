@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './FindYourRide.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import axios from 'axios';
 
 const FindYourRide = () => {
 
@@ -11,31 +12,34 @@ const FindYourRide = () => {
         AOS.init({ duration: 1000 });
 
 
-        /* console.log(navigator.geolocation.getCurrentPosition(
-            (position) => {
-                console.log(position);
-            },
-            (error) => {
-                console.log(error);
-            }
-        ));
+        // console.log(navigator.geolocation.getCurrentPosition(
+        //     (position) => {
+        //         console.log(position);
+        //     },
+        //     (error) => {
+        //         console.log(error);
+        //     }
+        // ));
 
         async function fetchdata() {
+
+            const options = {
+                method: 'GET',
+                url: 'https://apihub.latlong.ai/v4/landmarks.json?latitude=19.163051&longitude=72.839485',
+                headers: {
+                    'X-Authorization-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUb2tlbklEIjoiOWQwOWM3NDItZjMwYi00YTUxLTg2ZmYtYjhkZGE4MGRlNDQ4IiwiQ2xpZW50SUQiOiI0OGNjZmRkMi00MTg2LTQ3ZmYtODE3ZC1mNjJmOGEzZTExMjUiLCJCdW5pdElEIjoxMDUwNywiQXBwTmFtZSI6ImN5YmVyIiwiQXBwSUQiOjExMTIzLCJUaW1lU3RhbXAiOiIyMDI0LTA4LTAyIDA2OjUyOjI5IiwiZXhwIjoxNzI1MTczNTQ5fQ.7l96Y5LmEPWCiHX5OqUFs4S9FwkuDon24JOAJengBmM'
+                }
+            };
+
             try {
-                const data = await fetch('https://apihub.latlong.ai/v4/landmarks.json?latitude=19.163051&longitude=72.839485', {
-                    mode: 'no-cors',
-                    headers: {
-                        'X-Authorization-Token': ''
-                    }
-                });
-                const result = await data.json();
-                console.log(result);
+                const response = await axios.request(options);
+                console.log(response.data);
             }
             catch (error) {
                 console.log(error);
             }
         }
-        fetchdata(); */
+        fetchdata();
 
     }, []);
 
@@ -115,7 +119,9 @@ const FindYourRide = () => {
             </a>
 
 
-            <button className="find-ride-btn">Find Your Ride</button>
+            <button className="find-ride-btn">
+                <a href="/ridedetails">Find Your Ride</a>
+            </button>
         </div>
     )
 }

@@ -1,0 +1,55 @@
+.ride-details-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 0;
+    margin-top: 80px;
+}
+
+.ride-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 0 40px;
+    border: 2px solid #dc635b;
+    border-radius: 12px;
+}
+.span-head {
+    font-size: 24px;
+    font-weight: 600;
+    color: #242424;
+}
+.similar-text {
+    margin-top: -30px;
+    font-size: 12px;
+}
+
+.main-item-group-2 {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.item-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+}
+.ride-select-btn {
+    height: fit-content;
+    padding: 10px 30px;
+    background-color: #dc635b;
+    border-radius: 8px;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+.ride-select-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 5px #b3b3b3;
+}
