@@ -3,56 +3,50 @@ import React from 'react'
 import './FinalDetails.css'
 
 const FinalDetails = () => {
+
+    const [mainDetail, setMainDetail] = useState('contact-and-pickup');
+
+    const url = new URL(window.location.href); // Get the current URL
+    const params = new URLSearchParams(url.search);
+    const pickupLocation = params.get('pickup-loc');
+    const dropLocation = params.get('drop-loc');
+    const pickupTime = params.get('pickup-time');
+    const pickupDate = params.get('pickup-date');
+
+    console.log(`Pickup Location: ${pickupLocation}`);
+    console.log(`Drop Location: ${dropLocation}`);
+    console.log(`Pickup Time: ${pickupTime}`);
+    console.log(`Pickup Date: ${pickupDate}`);
+
     return (
         <div className='final-details'>
             <div className="main-details">
-                <div className="final-detail-header">
-                    CONTACT & PICKUP DETAILS
-                </div>
-                <div className="input-field">
-                    <span>NAME</span>
-                    <input type="text" className="name final-detail-input" placeholder='Enter your name' />
-                </div>
-                <div className="input-field">
-                    <span>EMAIL</span>
-                    <input type="text" className="email final-detail-input" placeholder='Enter your email address' />
-                </div>
-                <div className="input-field">
-                    <span>MOBILE</span>
-                    <input type="number" className="mobile final-detail-input" placeholder='Enter your mobile number' />
-                </div>
-                <div className="input-field">
-                    <span>PICKUP</span>
-                    <input type="text" className="pickup final-detail-input" placeholder='Enter your pickup address' />
-                </div>
-                <div className="input-field">
-                    <span>DROP</span>
-                    <input type="text" className="drop final-detail-input" placeholder='Enter your drop address' />
-                </div>
-                <button className='proceed-btn'>PROCEED</button>
+                <UserDetails />
+                {/* {mainDetail === 'contact-and-pickup' && <UserDetails setMainDetail={setMainDetail} />}
+                {mainDetail === 'payment' && <Payment setMainDetail={setMainDetail} />} */}
             </div>
 
             <div className="side-details">
                 <div className="booking-details">
                     <div className="booking-detail-header">YOUR BOOKING DETAILS</div>
                     <div className="info">
-                        <span>Itinerary :</span>
-                        Bangalore &gt; Tirupathi
+                        <span>Itinerary : </span>
+                        {pickupLocation} &gt; {dropLocation}
                     </div>
                     <div className="info">
-                        <span>Pickup Date :</span>
-                        6th August 2024 at 5:45 PM
+                        <span>Pickup Date : </span>
+                        {pickupDate} at {pickupTime}
                     </div>
                     <div className="info">
-                        <span>Car Type :</span>
+                        <span>Car Type : </span>
                         Toyota Innova Crysta
                     </div>
                     <div className="info">
-                        <span>KMs Included :</span>
+                        <span>KMs Included : </span>
                         240 Kms
                     </div>
                     <div className="info">
-                        <span>Total Fare :</span>
+                        <span>Total Fare : </span>
                         Rs. {(240 / 80) * 2320}
                     </div>
                 </div>
@@ -64,6 +58,37 @@ const FinalDetails = () => {
 
 
         </div>
+    )
+}
+
+const UserDetails = ({ setMainDetail }) => {
+    return (
+        <>
+            <div className="final-detail-header">
+                CONTACT & PICKUP DETAILS
+            </div>
+            <div className="input-field">
+                <span>NAME</span>
+                <input type="text" className="name final-detail-input" placeholder='Enter your name' />
+            </div>
+            <div className="input-field">
+                <span>EMAIL</span>
+                <input type="text" className="email final-detail-input" placeholder='Enter your email address' />
+            </div>
+            <div className="input-field">
+                <span>MOBILE</span>
+                <input type="number" className="mobile final-detail-input" placeholder='Enter your mobile number' />
+            </div>
+            <div className="input-field">
+                <span>PICKUP</span>
+                <input type="text" className="pickup final-detail-input" placeholder='Enter your pickup address' />
+            </div>
+            <div className="input-field">
+                <span>DROP</span>
+                <input type="text" className="drop final-detail-input" placeholder='Enter your drop address' />
+            </div>
+            <button className='proceed-btn' onClick={() => setMainDetail('payment')}>PROCEED</button>
+        </>
     )
 }
 
@@ -153,5 +178,42 @@ const TabsComponent = () => {
         </div>
     );
 };
+
+
+const Payment = ({ setMainDetail }) => {
+    return (
+        <>
+            <div className="final-detail-header">
+                PAYMENT DETAILS
+                <button className='bg-[#dc635b] absolute right-0 px-2 text-white' onClick={()=>setMainDetail('contact-and-pickup')}>
+                    &lt;&lt; Back
+                </button>
+            </div>
+            <div className="input-field">
+                <span>NAME</span>
+                <input type="text" className="name final-detail-input" placeholder='Enter your name' />
+            </div>
+            <div className="input-field">
+                <span>EMAIL</span>
+                <input type="text" className="email final-detail-input" placeholder='Enter your email address' />
+            </div>
+            <div className="input-field">
+                <span>MOBILE</span>
+                <input type="number" className="mobile final-detail-input" placeholder='Enter your mobile number' />
+            </div>
+            <div className="input-field">
+                <span>PICKUP</span>
+                <input type="text" className="pickup final-detail-input" placeholder='Enter your pickup address' />
+            </div>
+            <div className="input-field">
+                <span>DROP</span>
+                <input type="text" className="drop final-detail-input" placeholder='Enter your drop address' />
+            </div>
+            <button className='proceed-btn' onClick={() => setMainDetail('payment')}>PROCEED</button>
+        </>
+    )
+}
+
+
 
 export default FinalDetails

@@ -3,6 +3,19 @@ import './RideDetails.css'
 
 const RideDetails = () => {
 
+    const url = new URL(window.location.href); // Get the current URL
+    const params = new URLSearchParams(url.search);
+    const pickupLocation = params.get('pickup-loc');
+    const dropLocation = params.get('drop-loc');
+    const pickupTime = params.get('pickup-time');
+    const pickupDate = params.get('pickup-date');
+
+    console.log(`Pickup Location: ${pickupLocation}`);
+    console.log(`Drop Location: ${dropLocation}`);
+    console.log(`Pickup Time: ${pickupTime}`);
+    console.log(`Pickup Date: ${pickupDate}`);
+
+
     const rideInfos = [
         {
             car: 'Swift Dzire',
@@ -49,8 +62,11 @@ const RideDetails = () => {
 
     return (
         <div className="ride-details-container">
+            <span className="ride-information">
+                {`From ${pickupLocation} to ${dropLocation} on ${pickupDate} at ${pickupTime}`}
+            </span>
             {rideInfos.map((rideInfo, index) => (
-                <div className="ride-details">
+                <div className="ride-details" key={index}>
                     <div className="main-item-group-1 flex">
                         <img src="https://www.savaari.com/assets/img/cars/Savaari-Wagonr-Cab.jpg" alt="" />
                         <span className='span-head'>{rideInfo.car} <br />
@@ -72,11 +88,10 @@ const RideDetails = () => {
                         <div className="item-group 3" style={{ gap: '0' }}>
                             <span className='text-[32px] text-[#dc635b] font-bold'>Rs. {rideInfo.rate}</span>
                             Up to 80 km
-                            <span className='text-[14px] text-[#dc635b]'>Details</span>
                         </div>
 
                         <button className='ride-select-btn'>
-                            <a href="/finaldetails">SELECT</a>
+                            <a href={`/finaldetails?pickup-loc=${pickupLocation}&drop-loc=${dropLocation}&pickup-time=${pickupTime}&pickup-date=${pickupDate}`}>SELECT</a>
                         </button>
                     </div>
                 </div>

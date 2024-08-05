@@ -3,8 +3,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px 0;
+    padding: 50px 0;
     margin-top: 80px;
+}
+
+.ride-information {
+    margin-bottom: 40px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #797979;
 }
 
 .ride-details {
@@ -52,4 +59,61 @@
 .ride-select-btn:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 5px #b3b3b3;
+}
+
+@media(max-width: 1080px) {
+    .ride-details-container {
+        padding-top: 30px;
+    }
+    .ride-information {
+        font-size: 20px;
+        margin-bottom: 30px;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .ride-details {
+        width: 90%;
+        padding: 20px 10px;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-item-group-1 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .main-item-group-1 img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .span-head {
+        font-size: 20px;
+    }
+
+    .similar-text {
+        margin-top: 0;
+        font-size: 10px;
+    }
+
+    .main-item-group-2 {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .item-group {
+        font-size: 12px;
+    }
+
+    .ride-select-btn {
+        padding: 8px 20px;
+        width: 100%;
+    }
 }

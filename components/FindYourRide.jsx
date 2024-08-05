@@ -6,41 +6,16 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import axios from 'axios';
 
+
 const FindYourRide = () => {
+
+    const [pickupCity, setPickupCity] = useState('Ahmedabad');
+    const [dropCity, setDropCity] = useState('Ahmedabad');
+    const [pickupDate, setPickupDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
+    const [pickupTime, setPickupTime] = useState('05:00');
 
     useEffect(() => {
         AOS.init({ duration: 1000 });
-
-
-        // console.log(navigator.geolocation.getCurrentPosition(
-        //     (position) => {
-        //         console.log(position);
-        //     },
-        //     (error) => {
-        //         console.log(error);
-        //     }
-        // ));
-
-        async function fetchdata() {
-
-            const options = {
-                method: 'GET',
-                url: 'https://apihub.latlong.ai/v4/landmarks.json?latitude=19.163051&longitude=72.839485',
-                headers: {
-                    'X-Authorization-Token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUb2tlbklEIjoiOWQwOWM3NDItZjMwYi00YTUxLTg2ZmYtYjhkZGE4MGRlNDQ4IiwiQ2xpZW50SUQiOiI0OGNjZmRkMi00MTg2LTQ3ZmYtODE3ZC1mNjJmOGEzZTExMjUiLCJCdW5pdElEIjoxMDUwNywiQXBwTmFtZSI6ImN5YmVyIiwiQXBwSUQiOjExMTIzLCJUaW1lU3RhbXAiOiIyMDI0LTA4LTAyIDA2OjUyOjI5IiwiZXhwIjoxNzI1MTczNTQ5fQ.7l96Y5LmEPWCiHX5OqUFs4S9FwkuDon24JOAJengBmM'
-                }
-            };
-
-            try {
-                const response = await axios.request(options);
-                console.log(response.data);
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }
-        fetchdata();
-
     }, []);
 
     const [selectedOption, setSelectedOption] = useState('Outstation Travel');
@@ -105,7 +80,18 @@ const FindYourRide = () => {
 
             {selectedOption === 'Local' && <LocalRideSelect />}
 
-            {selectedOption === 'Outstation Travel' && <OutStationTravel />}
+            {selectedOption === 'Outstation Travel' &&
+                <OutStationTravel
+                    pickupCity={pickupCity}
+                    setPickupCity={setPickupCity}
+                    dropCity={dropCity}
+                    setDropCity={setDropCity}
+                    pickupTime={pickupTime}
+                    setPickupTime={setPickupTime}
+                    pickupDate={pickupDate}
+                    setPickupDate={setPickupDate}
+                />
+            }
 
             {selectedOption === 'Airport Transfer' && <AirportTranfer />}
 
@@ -120,7 +106,7 @@ const FindYourRide = () => {
 
 
             <button className="find-ride-btn">
-                <a href="/ridedetails">Find Your Ride</a>
+                <a href={`/ridedetails?pickup-loc=${pickupCity}&drop-loc=${dropCity}&pickup-time=${pickupTime}&pickup-date=${pickupDate}`}>Find Your Ride</a>
             </button>
         </div>
     )
@@ -160,7 +146,8 @@ const LocalRideSelect = () => {
         },
     ]);
 
-    const [selectedDate, setSelectedDate] = useState(new Date());
+
+    const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
     const [selectedType, setSelectedType] = useState('');
 
     // Function to handle select change
@@ -216,20 +203,20 @@ const LocalRideSelect = () => {
                     </select>
                 </div>
             </div>
-            <div className="ride-selection-detail rsd-four">
+            {/* <div className="ride-selection-detail rsd-four">
                 <div className="duration selection-header">
                     Package
                 </div>
                 <div className="package-input">
                     <img src="https://www.carzonrent.com/webcor/images/icons/packageicon.svg" className='h-[16px]' alt="" />
-                    {/* <input type="text" className='input' placeholder='To Station' /> */}
+                    
                     <select className='input' name="duration" id="">
                         {durations.map((duration, index) => (
                             <option className='city-options' value={duration} key={index}>{duration} Hours</option>
                         ))}
                     </select>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
@@ -243,41 +230,24 @@ const LocalRideSelect = () => {
 
 
 
-const OutStationTravel = () => {
+const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pickupTime, setPickupTime, pickupDate, setPickupDate }) => {
     const citiesFrom = ["Ahmedabad", "Bangalore", "Chennai", "Delhi", "Gurgaon", "Hyderabad", "Kolkata", "Mumbai", "Noida", "Pune", "Lucknow"];
     const citiesTo = ["Ahmedabad", "Bangalore", "Chennai", "Delhi", "Gurgaon", "Hyderabad", "Kolkata", "Mumbai", "Noida", "Pune", "Lucknow"];
-    // ["Agra", "Aligarh", "Ambala", "Bareilly", "Bijnor", "Bulandshahr", "Chandigarh", "Dehradun", "Faridabad", "Ghaziabad", "Gurgaon", "Haridwar", "Karnal", "Kurukshetra", "Meerut", "Moradabad", "Muzaffarnagar", "Noida", "Panipat", "Roorkee", "Saharanpur", "Sonipat", "Yamunanagar", "Zirakpur"];
-
     const timestamps = ["05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30"];
-    const [carTypes, setCarTypes] = useState([
-        {
-            type: 'Budget',
-            car: 'Swift Dezire',
-            capacity: '4+ Seater'
-        },
-        {
-            type: 'Premium',
-            car: 'Crysta',
-            capacity: '6+ Seater'
-        },
-        {
-            type: 'Family',
-            car: 'Ertiga',
-            capacity: '6+ Seater'
-        },
-    ]);
 
-    const [pickupDate, setPickupDate] = useState(new Date());
-    const [returnDate, setReturnDate] = useState(new Date());
-    const [selectedType, setSelectedType] = useState('');
 
-    // Function to handle select change
-    const handleSelectChange = (event) => {
-        setSelectedType(event.target.value);
+    const handleCityChange = (event) => {
+        const { name, value } = event.target;
+        if (name === 'pickupCity') {
+            setPickupCity(value);
+        } else if (name === 'dropCity') {
+            setDropCity(value);
+        }
     };
 
-    // Find selected car type details
-    const selectedCarType = carTypes.find((cartype) => cartype.type === selectedType);
+    const handleTimeChange = (event) => {
+        setPickupTime(event.target.value);
+    };
 
     return (
         <>
@@ -288,8 +258,7 @@ const OutStationTravel = () => {
                     </div>
                     <div className="location-input">
                         <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
-                        {/* <input type="text" className='input' placeholder='From Station' /> */}
-                        <select className='input' name="city" id="">
+                        <select className='input' name="pickupCity" value={pickupCity} onChange={handleCityChange}>
                             {citiesFrom.map((city, index) => (
                                 <option className='city-options' value={city} key={index}>{city}</option>
                             ))}
@@ -303,8 +272,7 @@ const OutStationTravel = () => {
                     </div>
                     <div className="location-input">
                         <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
-                        {/* <input type="text" className='input' placeholder='To Station' /> */}
-                        <select className='input' name="city" id="">
+                        <select className='input' name="dropCity" value={dropCity} onChange={handleCityChange}>
                             {citiesTo.map((city, index) => (
                                 <option className='city-options' value={city} key={index}>{city}</option>
                             ))}
@@ -320,7 +288,7 @@ const OutStationTravel = () => {
                         <DatePicker
                             className='input ml-2'
                             selected={pickupDate}
-                            onChange={date => setPickupDate(date)}
+                            onChange={date => setPickupDate(date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }))}
                         />
                     </div>
                 </div>
@@ -330,8 +298,7 @@ const OutStationTravel = () => {
                     </div>
                     <div className="time-input">
                         <img src="https://www.carzonrent.com/webcor/images/icons/clocktime.svg" className='h-[16px]' alt="" />
-                        {/* <input type="text" className='input' placeholder='To Station' /> */}
-                        <select className='input' name="time" id="">
+                        <select className='input' name="pickupTime" value={pickupTime} onChange={handleTimeChange}>
                             {timestamps.map((time, index) => (
                                 <option className='city-options' value={time} key={index}>{time}</option>
                             ))}
@@ -340,7 +307,7 @@ const OutStationTravel = () => {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 
@@ -374,7 +341,7 @@ const AirportTranfer = () => {
         },
     ]);
 
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
     const [selectedType, setSelectedType] = useState('');
 
     // Function to handle select change
@@ -479,8 +446,8 @@ const LongTermRentals = () => {
         },
     ]);
 
-    const [pickupDate, setPickupDate] = useState(new Date());
-    const [returnDate, setReturnDate] = useState(new Date());
+    const [pickupDate, setPickupDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
+    const [returnDate, setReturnDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
     const [selectedType, setSelectedType] = useState('');
 
     // Function to handle select change
