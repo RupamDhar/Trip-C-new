@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@algolia/autocomplete-core": "^1.17.4",
+    "@googlemaps/extended-component-library": "^0.6.11",
+    "@react-google-maps/api": "^2.19.3",
     "aos": "^2.3.4",
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
     "date-fns": "^3.6.0",
     "flowbite-react": "^0.10.1",
+    "google": "^2.1.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-datepicker": "^7.3.0",

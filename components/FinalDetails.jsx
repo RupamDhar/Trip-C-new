@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import React from 'react'
+import { APILoader, PlacePicker } from '@googlemaps/extended-component-library/react';
 import './FinalDetails.css'
 
 const FinalDetails = () => {
@@ -62,8 +63,22 @@ const FinalDetails = () => {
 }
 
 const UserDetails = ({ setMainDetail }) => {
+
+    const [formattedAddress, setFormattedAddress] = React.useState('');
+    const handlePlaceChange = (e) => {
+        setFormattedAddress(e.target.value?.formattedAddress ?? '');
+    };
+    const countries = [];
+
     return (
         <>
+            <APILoader apiKey="AIzaSyD8jdAsCbvrf-BxCgp_TDZzu7DOWunsp14" solutionChannel="GMP_GCC_placepicker_v1" />
+            {/* <div class="container">
+                <PlacePicker country={countries} placeholder="Enter a place to see its address" onPlaceChange={handlePlaceChange} />
+                <div className="result">
+                    {formattedAddress}
+                </div>
+            </div> */}
             <div className="final-detail-header">
                 CONTACT & PICKUP DETAILS
             </div>
@@ -81,7 +96,8 @@ const UserDetails = ({ setMainDetail }) => {
             </div>
             <div className="input-field">
                 <span>PICKUP</span>
-                <input type="text" className="pickup final-detail-input" placeholder='Enter your pickup address' />
+                {/* <input type="text" className="pickup final-detail-input" placeholder='Enter your pickup address' /> */}
+                <PlacePicker country={countries} className="pickup final-detail-input" placeholder="Enter a place to see its address" onPlaceChange={handlePlaceChange} />
             </div>
             <div className="input-field">
                 <span>DROP</span>
@@ -185,7 +201,7 @@ const Payment = ({ setMainDetail }) => {
         <>
             <div className="final-detail-header">
                 PAYMENT DETAILS
-                <button className='bg-[#dc635b] absolute right-0 px-2 text-white' onClick={()=>setMainDetail('contact-and-pickup')}>
+                <button className='bg-[#dc635b] absolute right-0 px-2 text-white' onClick={() => setMainDetail('contact-and-pickup')}>
                     &lt;&lt; Back
                 </button>
             </div>

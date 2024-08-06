@@ -41,11 +41,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
+    padding: 0;
+    height: 100%;
     color: rgb(0, 0, 0);
     font-weight: 600;
     transition: all 0.15s ease-in-out;
     position: relative;
+}
+.nav-hrefs > a {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-hrefs:hover {
