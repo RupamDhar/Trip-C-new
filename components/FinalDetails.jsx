@@ -13,6 +13,8 @@ const FinalDetails = () => {
     const dropLocation = params.get('drop-loc');
     const pickupTime = params.get('pickup-time');
     const pickupDate = params.get('pickup-date');
+    const car = params.get('car');
+    const rate = params.get('rate');
 
     console.log(`Pickup Location: ${pickupLocation}`);
     console.log(`Drop Location: ${dropLocation}`);
@@ -32,7 +34,7 @@ const FinalDetails = () => {
                     <div className="booking-detail-header">YOUR BOOKING DETAILS</div>
                     <div className="info">
                         <span>Itinerary : </span>
-                        {pickupLocation} &gt; {dropLocation}
+                        {pickupLocation} &gt; {dropLocation==='Ahmedabad'?'':dropLocation}
                     </div>
                     <div className="info">
                         <span>Pickup Date : </span>
@@ -40,7 +42,7 @@ const FinalDetails = () => {
                     </div>
                     <div className="info">
                         <span>Car Type : </span>
-                        Toyota Innova Crysta
+                        {car}
                     </div>
                     <div className="info">
                         <span>KMs Included : </span>
@@ -48,7 +50,7 @@ const FinalDetails = () => {
                     </div>
                     <div className="info">
                         <span>Total Fare : </span>
-                        Rs. {(240 / 80) * 2320}
+                        Rs. {rate} per 80km
                     </div>
                 </div>
 
@@ -96,8 +98,8 @@ const UserDetails = ({ setMainDetail }) => {
             </div>
             <div className="input-field">
                 <span>PICKUP</span>
-                {/* <input type="text" className="pickup final-detail-input" placeholder='Enter your pickup address' /> */}
-                <PlacePicker country={countries} className="pickup final-detail-input" placeholder="Enter a place to see its address" onPlaceChange={handlePlaceChange} />
+                <input type="text" className="pickup final-detail-input" placeholder='Enter your pickup address' />
+                {/* <PlacePicker country={countries} className="pickup final-detail-input" placeholder="Enter a place to see its address" onPlaceChange={handlePlaceChange} /> */}
             </div>
             <div className="input-field">
                 <span>DROP</span>

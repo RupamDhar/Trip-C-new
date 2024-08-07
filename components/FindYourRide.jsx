@@ -18,6 +18,12 @@ const FindYourRide = () => {
         AOS.init({ duration: 1000 });
     }, []);
 
+    useEffect(() => {
+        console.log(pickupCity);
+        console.log(pickupDate);
+        console.log(pickupTime);
+    })
+
     const [selectedOption, setSelectedOption] = useState('Outstation Travel');
 
 
@@ -78,7 +84,18 @@ const FindYourRide = () => {
                 </div>
             </div>
 
-            {selectedOption === 'Local' && <LocalRideSelect />}
+            {selectedOption === 'Local' &&
+                <LocalRideSelect
+                    pickupCity={pickupCity}
+                    setPickupCity={setPickupCity}
+                    dropCity={dropCity}
+                    setDropCity={setDropCity}
+                    pickupTime={pickupTime}
+                    setPickupTime={setPickupTime}
+                    pickupDate={pickupDate}
+                    setPickupDate={setPickupDate}
+                />
+            }
 
             {selectedOption === 'Outstation Travel' &&
                 <OutStationTravel
@@ -93,9 +110,31 @@ const FindYourRide = () => {
                 />
             }
 
-            {selectedOption === 'Airport Transfer' && <AirportTranfer />}
+            {selectedOption === 'Airport Transfer' &&
+                <AirportTranfer
+                    pickupCity={pickupCity}
+                    setPickupCity={setPickupCity}
+                    dropCity={dropCity}
+                    setDropCity={setDropCity}
+                    pickupTime={pickupTime}
+                    setPickupTime={setPickupTime}
+                    pickupDate={pickupDate}
+                    setPickupDate={setPickupDate}
+                />
+            }
 
-            {selectedOption === 'Long Term Rentals' && <LongTermRentals />}
+            {selectedOption === 'Long Term Rentals' &&
+                <LongTermRentals
+                    pickupCity={pickupCity}
+                    setPickupCity={setPickupCity}
+                    dropCity={dropCity}
+                    setDropCity={setDropCity}
+                    pickupTime={pickupTime}
+                    setPickupTime={setPickupTime}
+                    pickupDate={pickupDate}
+                    setPickupDate={setPickupDate}
+                />
+            }
 
             <a href="/outstation" className='offer hidden'>
                 <img src="https://www.carzonrent.com/webcor/images/icons/percent-discount.svg" alt="" />
@@ -123,7 +162,7 @@ export default FindYourRide;
 
 
 
-const LocalRideSelect = () => {
+const LocalRideSelect = ({ pickupCity, setPickupCity, dropCity, setDropCity, pickupTime, setPickupTime, pickupDate, setPickupDate }) => {
 
     const cities = ["Ahmedabad", "Bangalore", "Chennai", "Delhi", "Gurgaon", "Hyderabad", "Kolkata", "Mumbai", "Noida", "Pune", "Lucknow"];
     const timestamps = ["05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30"];
@@ -154,6 +193,13 @@ const LocalRideSelect = () => {
     const handleSelectChange = (event) => {
         setSelectedType(event.target.value);
     };
+    const handleCityChange = (event) => {
+        const { name, value } = event.target;
+        setPickupCity(value);
+    };
+    const handleTimeChange = (event) => {
+        setPickupTime(event.target.value);
+    };
 
     // Find selected car type details
     const selectedCarType = carTypes.find((cartype) => cartype.type === selectedType);
@@ -167,7 +213,7 @@ const LocalRideSelect = () => {
                 <div className="location-input">
                     <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
                     {/* <input type="text" className='input' placeholder='From Station' /> */}
-                    <select className='input' name="city" id="">
+                    <select className='input' name="city" value={pickupCity} onChange={handleCityChange}>
                         {cities.map((city, index) => (
                             <option className='city-options' value={city} key={index}>{city}</option>
                         ))}
@@ -183,8 +229,8 @@ const LocalRideSelect = () => {
                     <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
                     <DatePicker
                         className='input ml-2'
-                        selected={selectedDate}
-                        onChange={date => setSelectedDate(date)}
+                        selected={pickupDate}
+                        onChange={date => setPickupDate(date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }))}
                     />
                 </div>
             </div>
@@ -196,7 +242,7 @@ const LocalRideSelect = () => {
                 <div className="time-input">
                     <img src="https://www.carzonrent.com/webcor/images/icons/clocktime.svg" className='h-[16px]' alt="" />
                     {/* <input type="text" className='input' placeholder='To Station' /> */}
-                    <select className='input' name="time" id="">
+                    <select className='input' name="time" value={pickupTime} onChange={handleTimeChange}>
                         {timestamps.map((time, index) => (
                             <option className='city-options' value={time} key={index}>{time}</option>
                         ))}

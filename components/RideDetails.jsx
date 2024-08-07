@@ -3,6 +3,7 @@ import './RideDetails.css';
 
 const RideDetails = () => {
     const [activeModal, setActiveModal] = useState(null);
+    const [selectedRide, setSelectedRide] = useState(null); // Added state for selected ride
 
     const url = new URL(window.location.href); // Get the current URL
     const params = new URLSearchParams(url.search);
@@ -32,13 +33,14 @@ const RideDetails = () => {
 
     const handleDetailsClick = (index) => {
         setActiveModal(index === activeModal ? null : index);
+        setSelectedRide(index); // Update selected ride
     };
 
     return (
         <>
             <div className="ride-details-container sm-max:hidden">
                 <span className="ride-information">
-                    {`From ${pickupLocation} to ${dropLocation} on ${pickupDate} at ${pickupTime}`}
+                    {`From ${pickupLocation} ${dropLocation==='Ahmedabad'?'':`to ${dropLocation}`} on ${pickupDate} at ${pickupTime}`}
                 </span>
                 {rideInfos.map((rideInfo, index) => (
                     <div className="ride-details-wrapper" key={index}>
@@ -71,7 +73,9 @@ const RideDetails = () => {
                                 </div>
 
                                 <button className='ride-select-btn'>
-                                    <a href={`/finaldetails?pickup-loc=${pickupLocation}&drop-loc=${dropLocation}&pickup-time=${pickupTime}&pickup-date=${pickupDate}`}>SELECT CAR</a>
+                                    <a href={`/finaldetails?pickup-loc=${pickupLocation}&drop-loc=${dropLocation}&pickup-time=${pickupTime}&pickup-date=${pickupDate}&car=${rideInfo.car}&rate=${rideInfo.rate}`}>
+                                        SELECT CAR
+                                    </a>
                                 </button>
                             </div>
                         </div>
