@@ -74,7 +74,7 @@ const UserDetails = ({ setMainDetail }) => {
 
     return (
         <>
-            <APILoader apiKey="AIzaSyD8jdAsCbvrf-BxCgp_TDZzu7DOWunsp14" solutionChannel="GMP_GCC_placepicker_v1" />
+            <APILoader apiKey="API_KEY" solutionChannel="GMP_GCC_placepicker_v1" />
             {/* <div class="container">
                 <PlacePicker country={countries} placeholder="Enter a place to see its address" onPlaceChange={handlePlaceChange} />
                 <div className="result">
