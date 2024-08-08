@@ -51,8 +51,8 @@
     margin-bottom: 30px;
   }
   .hero-section {
-    background: none;
-    background-color: var(--theme-yellow);
+    /* background: none;
+    background-color: var(--theme-yellow); */
     height: fit-content;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
