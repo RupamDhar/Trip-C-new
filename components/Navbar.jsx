@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+// import { a } from 'react-router-dom';
 import LoginForm from './LoginForm';
 
 const Navbar = () => {
@@ -26,11 +26,11 @@ const Navbar = () => {
                         Business Solutions
                         <div className="biz-sol-modal">
                             <ul className="biz-sol-list">
-                                <li className="biz-sol-list-item"><Link to="/corporatetravels">Corporate Travels</Link></li>
-                                <li className="biz-sol-list-item"><Link to="/smetravels">SME Travels</Link></li>
-                                <li className="biz-sol-list-item"><Link to="/aviationtravelsolutions">Aviation Travel Solutions</Link></li>
-                                <li className="biz-sol-list-item"><Link to="/govpsutravel">Gov & PSU's Travel</Link></li>
-                                <li className="biz-sol-list-item"><Link to="/hospitalitytravel">Hospitality Travel</Link></li>
+                                <li className="biz-sol-list-item"><a href="/corporatetravels">Corporate Travels</a></li>
+                                <li className="biz-sol-list-item"><a href="/smetravels">SME Travels</a></li>
+                                <li className="biz-sol-list-item"><a href="/aviationtravelsolutions">Aviation Travel Solutions</a></li>
+                                <li className="biz-sol-list-item"><a href="/govpsutravel">Gov & PSU's Travel</a></li>
+                                <li className="biz-sol-list-item"><a href="/hospitalitytravel">Hospitality Travel</a></li>
                             </ul>
                         </div>
                     </div>
@@ -64,8 +64,8 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="nav-hrefs">Blog</div>
-                    <div className="nav-hrefs"><Link to="/aboutus">About Us</Link></div>
-                    <div className="nav-hrefs"><Link to="/contactus">Contact Us</Link></div>
+                    <div className="nav-hrefs"><a href="/aboutus">About Us</a></div>
+                    <div className="nav-hrefs"><a href="/contactus">Contact Us</a></div>
                 </div>
             </div>
 
@@ -74,16 +74,16 @@ const Navbar = () => {
             <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
                 <div className="mobile-menu-close" onClick={toggleMobileMenu}>×</div>
                 <div className="nav-hrefs-wrapper">
-                    <div className="nav-hrefs">Travel Packages</div>
+                    <a href='/' className="nav-hrefs">Travel Packages</a>
                     <div className="nav-hrefs">
                         Business Solutions
                         <div className="biz-sol-modal">
                             <ul className="biz-sol-list">
-                                <li className="biz-sol-list-item"><Link to="/corporatetravels">Corporate Travels</Link></li>
-                                <li className="biz-sol-list-item"><Link to="/smetravels">SME Travels</Link></li>
-                                <li className="biz-sol-list-item"><Link to="/aviationtravelsolutions">Aviation Travel Solutions</Link></li>
-                                <li className="biz-sol-list-item"><Link to="/govpsutravel">Gov & PSU's Travel</Link></li>
-                                <li className="biz-sol-list-item"><Link to="/hospitalitytravel">Hospitality Travel</Link></li>
+                                <li className="biz-sol-list-item"><a href="/corporatetravels">Corporate Travels</a></li>
+                                <li className="biz-sol-list-item"><a href="/smetravels">SME Travels</a></li>
+                                <li className="biz-sol-list-item"><a href="/aviationtravelsolutions">Aviation Travel Solutions</a></li>
+                                <li className="biz-sol-list-item"><a href="/govpsutravel">Gov & PSU's Travel</a></li>
+                                <li className="biz-sol-list-item"><a href="/hospitalitytravel">Hospitality Travel</a></li>
                             </ul>
                         </div>
                     </div>
@@ -117,8 +117,8 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="nav-hrefs">Blog</div>
-                    <div className="nav-hrefs"><Link to="/aboutus">About Us</Link></div>
-                    <div className="nav-hrefs"><Link to="/contactus">Contact Us</Link></div>
+                    <div className="nav-hrefs"><a href="/aboutus">About Us</a></div>
+                    <div className="nav-hrefs"><a href="/contactus">Contact Us</a></div>
                 </div>
             </div>
             <div className="login-signup-btn" onClick={()=>setToggleForm(!toggleForm)}>
