@@ -18,10 +18,10 @@ const Navbar = () => {
             </div>
             <div className="nav-interact">
                 <div className="nav-hrefs-wrapper">
-                    <div className="nav-hrefs">
+                    <a href='/' className="nav-hrefs">
                         <img src="https://www.carzonrent.com/webcor/images/icons/discount-icon.svg" alt="Discount Icon" />
                         Travel Packages
-                    </div>
+                    </a>
                     <div className="nav-hrefs">
                         Business Solutions
                         <div className="biz-sol-modal">

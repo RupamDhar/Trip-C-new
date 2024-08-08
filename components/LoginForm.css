@@ -22,9 +22,12 @@
     object-position: center;
 }
 .login-form {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    gap: 20px;
+    justify-content: center;
+    /* justify-content: space-evenly; */
     align-items: center;
     padding: 20px;
     height: 100%;
@@ -78,4 +81,60 @@
         height: 60vh;
         width: auto;
     }
+}
+
+.tab-container {
+    display: flex;
+    position: absolute;
+    top: 50px;
+    /* margin-bottom: 20px; */
+}
+
+.tab-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    background-color: #ececec;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    background-color: var(--theme-yellow);
+    color: white;
+    font-weight: bold;
+}
+
+.form-content {
+    width: 100%;
+}
+
+.login-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.login-info > input {
+    margin-left: 10px;
+    flex-grow: 1;
+    height: 100%;
+    padding: 0 10px;
+    border-radius: 10px;
+    background-color: #ececec;
+}
+
+.login-info > input:focus {
+    outline: none;
+}
+
+.login-submit-btn {
+    height: 45px;
+    width: 100%;
+    font-weight: 600;
+    color: white;
+    background-color: var(--theme-yellow);
 }

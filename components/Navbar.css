@@ -227,6 +227,8 @@
 
     .nav-hrefs {
         width: 100%;
+        height: fit-content;
+        padding: 20px 0;
         flex-direction: column;
         color: white;
     }

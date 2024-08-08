@@ -32,7 +32,7 @@ const FindYourRide = () => {
     };
 
     return (
-        <div className="find-ride-section" data-aos='fade-up' data-aos-delay='200'>
+        <div className="find-ride-section" data-aos='fade-up' data-aos-delay='400'>
             <div className="ride-categories">
                 <div className="ride-category ">
                     <input

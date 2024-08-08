@@ -18,17 +18,17 @@ const RideDetails = () => {
     console.log(`Pickup Date: ${pickupDate}`);
 
     const rideInfos = [
-        { car: 'Swift Dzire', rate: 2320, seater: '4', luggage: 1, ac: 'AC' },
-        { car: 'Honda City', rate: 2720, seater: '4', luggage: 1, ac: 'AC' },
-        { car: 'Ertiga', rate: 3024, seater: '7 or 6', luggage: 1, ac: 'AC' },
-        { car: 'Innova', rate: 3600, seater: '7 or 6', luggage: 1, ac: 'AC' },
-        { car: 'Innova Crysta', rate: 3920, seater: '7', luggage: 1, ac: 'AC' },
-        { car: 'Innova Hycroos', rate: 4480, seater: '7', luggage: 1, ac: 'AC' },
-        { car: 'Fortuner', rate: 7488, seater: '7', luggage: 1, ac: 'AC' },
-        { car: 'Mercedes E-Class', rate: 19500, seater: '4', luggage: 1, ac: 'AC' },
-        { car: 'Mercedes S-Class', rate: 19500, seater: '4', luggage: 1, ac: 'AC' },
-        { car: 'Tempo Traveler No AC', rate: 3800, seater: '13', luggage: 1, ac: 'Non AC' },
-        { car: 'Tempo Traveler AC', rate: 4640, seater: '13', luggage: 1, ac: 'AC' },
+        { car: 'Swift Dzire', rate: 2320, seater: '4', luggage: 1, ac: 'AC', img: "https://www.savaari.com/assets/img/cars/Savaari-Wagonr-Cab.jpg" },
+        { car: 'Honda City', rate: 2720, seater: '4', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Crysta-Cab.jpg' },
+        { car: 'Ertiga', rate: 3024, seater: '7 or 6', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Ertiga-Cab.jpg' },
+        { car: 'Innova', rate: 3600, seater: '7 or 6', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Innova-Cab.jpg' },
+        { car: 'Innova Crysta', rate: 3920, seater: '7', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Crysta-Cab.jpg' },
+        { car: 'Innova Hycroos', rate: 4480, seater: '7', luggage: 1, ac: 'AC', img: 'hycroos.png' },
+        { car: 'Fortuner', rate: 7488, seater: '7', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Crysta-Cab.jpg' },
+        { car: 'Mercedes E-Class', rate: 19500, seater: '4', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Mercedes-Cab.jpg' },
+        { car: 'Mercedes S-Class', rate: 19500, seater: '4', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Mercedes-Cab.jpg' },
+        { car: 'Tempo Traveler No AC', rate: 3800, seater: '13', luggage: 1, ac: 'Non AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Tempo-Traveller-Cab.jpg' },
+        { car: 'Tempo Traveler AC', rate: 4640, seater: '13', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Tempo-Traveller-Cab.jpg' }
     ];
 
     const handleDetailsClick = (index) => {
@@ -40,13 +40,13 @@ const RideDetails = () => {
         <>
             <div className="ride-details-container sm-max:hidden">
                 <span className="ride-information">
-                    {`From ${pickupLocation} ${dropLocation==='Ahmedabad'?'':`to ${dropLocation}`} on ${pickupDate} at ${pickupTime}`}
+                    {`From ${pickupLocation} ${dropLocation === 'Ahmedabad' ? '' : `to ${dropLocation}`} on ${pickupDate} at ${pickupTime}`}
                 </span>
                 {rideInfos.map((rideInfo, index) => (
                     <div className="ride-details-wrapper" key={index}>
                         <div className="ride-details">
                             <div className="main-item-group-1 flex">
-                                <img src="https://www.savaari.com/assets/img/cars/Savaari-Wagonr-Cab.jpg" alt="" />
+                                <img src={rideInfo.img} className='h-[100%]' alt="" />
                                 <span className='span-head'>
                                     {rideInfo.car} <br />
                                     <span className='similar-text'>Or Similar</span>
@@ -125,17 +125,17 @@ const RideDetailsMobile = () => {
     console.log(`Pickup Date: ${pickupDate}`);
 
     const rideInfos = [
-        { car: 'Swift Dzire', rate: 2320, seater: '4', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Wagonr-Cab.jpg' },
-        { car: 'Honda City', rate: 2720, seater: '4', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Wagonr-Cab.jpg' },
-        { car: 'Ertiga', rate: 3024, seater: '7 or 6', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Ertiga.jpg' },
-        { car: 'Innova', rate: 3600, seater: '7 or 6', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Innova.jpg' },
-        { car: 'Crysta', rate: 3920, seater: '7', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Innova-Crysta.jpg' },
-        { car: 'Hycroos', rate: 4480, seater: '7', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Innova-Hycross.jpg' },
-        { car: 'Fortuner', rate: 7488, seater: '7', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Fortuner.jpg' },
-        { car: 'Mercedes E', rate: 19500, seater: '4', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Mercedes-E-Class.jpg' },
-        { car: 'Mercedes S', rate: 19500, seater: '4', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Mercedes-S-Class.jpg' },
-        { car: 'Tempo No-AC', rate: 3800, seater: '13', luggage: 1, ac: 'Non AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Tempo-Traveler-Non-AC.jpg' },
-        { car: 'Tempo AC', rate: 4640, seater: '13', luggage: 1, ac: 'AC', image: 'https://www.savaari.com/assets/img/cars/Savaari-Tempo-Traveler-AC.jpg' },
+        { car: 'Swift Dzire', rate: 2320, seater: '4', luggage: 1, ac: 'AC', img: "https://www.savaari.com/assets/img/cars/Savaari-Wagonr-Cab.jpg" },
+        { car: 'Honda City', rate: 2720, seater: '4', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Crysta-Cab.jpg' },
+        { car: 'Ertiga', rate: 3024, seater: '7 or 6', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Ertiga-Cab.jpg' },
+        { car: 'Innova', rate: 3600, seater: '7 or 6', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Innova-Cab.jpg' },
+        { car: 'Crysta', rate: 3920, seater: '7', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Crysta-Cab.jpg' },
+        { car: 'Hycroos', rate: 4480, seater: '7', luggage: 1, ac: 'AC', img: 'hycroos.png' },
+        { car: 'Fortuner', rate: 7488, seater: '7', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Crysta-Cab.jpg' },
+        { car: 'Mercedes E', rate: 19500, seater: '4', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Mercedes-Cab.jpg' },
+        { car: 'Mercedes S', rate: 19500, seater: '4', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Mercedes-Cab.jpg' },
+        { car: 'Tempo No AC', rate: 3800, seater: '13', luggage: 1, ac: 'Non AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Tempo-Traveller-Cab.jpg' },
+        { car: 'Tempo AC', rate: 4640, seater: '13', luggage: 1, ac: 'AC', img: 'https://www.savaari.com/assets/img/cars/Savaari-Tempo-Traveller-Cab.jpg' }
     ];
 
     const handleDetailsClick = (index) => {
@@ -155,7 +155,7 @@ const RideDetailsMobile = () => {
                         className={`tab p-1 cursor-pointer rounded-lg overflow-hidden border border-gray-900 transition-transform duration-300 ${activeTab === index ? 'border-[#dc635b]' : ''}`}
                         onClick={() => setActiveTab(index)}
                     >
-                        <img className='w-full h-10 object-fit' src='https://www.savaari.com/assets/img/cars/Savaari-Wagonr-Cab.jpg' alt={rideInfo.car} />
+                        <div className="img-container w-full flex justify-center"><img className='h-10 object-fit' src={rideInfo.img} alt={rideInfo.car} /></div>
                         <div className='text-center'>
                             <span className='block text-xs'>{rideInfo.car}</span>
                             <span className='block text-xs text-gray-600'>{`Rs. ${rideInfo.rate}`}</span>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import './Faq.css';
 
 const Faq = () => {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -9,25 +8,24 @@ const Faq = () => {
     };
 
     return (
-        <div className="container mx-auto sm-max:px-0 sm-max:py-6 px-8 py-8">
-            <div className="bg-white rounded-lg sm-max:p-2 p-8">
-                <div className="flex md:flex-row justify-between px-4 items-center mb-6">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-4 md:mb-0">FAQ's</h3>
-                    <a href="/faqs" className="text-yellow-400 font-bold text-lg">View All</a>
+        <div className="mt-24 w-full px-5">
+            <div className="bg-gray-100 p-5 rounded-lg">
+                <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <h3 className="text-3xl font-bold text-gray-800 mb-4 md:mb-0">FAQ's</h3>
+                    <a href="/faqs" className="text-red-400 font-bold text-lg">View All</a>
                 </div>
-
                 <div>
                     {faqData.map((faq, index) => (
-                        <div key={index} className="mb-0">
+                        <div key={index} className="mb-4">
                             <button
                                 onClick={() => toggleAccordion(index)}
-                                className="w-full font-bold sm-max:text-sm text-l text-left py-0 px-2 rounded-lg focus:outline-none"
+                                className="w-full text-left font-bold text-lg sm:text-base py-2 px-3 rounded-lg focus:outline-none bg-white text-gray-800"
                             >
                                 {faq.question}
                             </button>
                             <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeIndex === index ? 'max-h-screen' : 'max-h-0'}`}>
-                                <div className="p-4">
-                                    <p className="text-sm md:text-base">{faq.answer}</p>
+                                <div className="p-4 bg-white">
+                                    <p className="text-base text-gray-700">{faq.answer}</p>
                                 </div>
                             </div>
                             {index < faqData.length - 1 && <hr className="my-4" />}
@@ -36,13 +34,12 @@ const Faq = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 
 const faqData = [
     {
-        question: "How do I book a car with Carzonrent?",
+        question: "How do I book a car with Trip-C?",
         answer: "Simply visit our website, select your preferred location, dates, and car model, and proceed to the booking process. You can also give us a call or use our mobile app for a convenient booking experience."
     },
     {
