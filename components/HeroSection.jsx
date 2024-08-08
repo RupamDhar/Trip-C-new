@@ -14,7 +14,7 @@ const HeroSection = () => {
 
     useEffect(() => {
         AOS.init({
-            duration: 1500,
+            duration: 2000,
             once: true
         })
     })
@@ -51,7 +51,7 @@ const HeroSection = () => {
             <OurServices />
             <CompanyStats />
             {/* <SelfDrive /> */}
-            <WhyChooseUs />
+            {/* <WhyChooseUs /> */}
         </div>
     )
 }

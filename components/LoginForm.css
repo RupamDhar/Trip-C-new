@@ -12,8 +12,8 @@
 .form-wrapper {
     position: relative;
     display: flex;
-    height: 70vh;
-    width: 50vw;
+    height: fit-content;
+    width: 30vw;
 }
 .form-img {
     height: 100%;
@@ -52,10 +52,11 @@
 }
 
 .login-info > input {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     flex-grow: 1;
     height: 100%;
     padding: 0 10px;
+    border: 1px solid rgb(139, 139, 139);
     border-radius: 10px;
     background-color: #ececec;
 }
@@ -119,11 +120,11 @@
 }
 
 .login-info > input {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     flex-grow: 1;
     height: 100%;
     padding: 0 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #ececec;
 }
 
@@ -134,7 +135,13 @@
 .login-submit-btn {
     height: 45px;
     width: 100%;
+    border: 2px solid var(--theme-yellow);
     font-weight: 600;
     color: white;
     background-color: var(--theme-yellow);
+    transition: all 0.2s ease-in-out;
+}
+.login-submit-btn:hover {
+    background-color: white;
+    color: var(--theme-yellow);
 }

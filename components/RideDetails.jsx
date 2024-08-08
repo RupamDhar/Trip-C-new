@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './RideDetails.css';
+// import './RideDetails.css';
 
 const RideDetails = () => {
     const [activeModal, setActiveModal] = useState(null);
@@ -38,33 +38,33 @@ const RideDetails = () => {
 
     return (
         <>
-            <div className="ride-details-container sm-max:hidden">
-                <span className="ride-information">
+            <div className="ride-details-container min-h-screen flex flex-col items-center py-[50px] mt-[80px] sm-max:py-[30px] sm-max:hidden">
+                <span className="ride-information mb-[40px] text-[32px] font-bold text-[#797979] sm-max:text-[20px] sm-max:mb-[30px] sm-max:px-[20px] sm-max:text-center">
                     {`From ${pickupLocation} ${dropLocation === 'Ahmedabad' ? '' : `to ${dropLocation}`} on ${pickupDate} at ${pickupTime}`}
                 </span>
                 {rideInfos.map((rideInfo, index) => (
-                    <div className="ride-details-wrapper" key={index}>
-                        <div className="ride-details">
+                    <div className="ride-details-wrapper w-full mb-[20px] flex flex-col items-center" key={index}>
+                        <div className="ride-details flex justify-between items-center h-[120px] w-[80%] px-[40px] border-2 border-[#dc635b] rounded-[12px] sm-max:w-[90%] sm-max:px-[20px] sm-max:h-auto sm-max:flex-col sm-max:items-center">
                             <div className="main-item-group-1 flex">
                                 <img src={rideInfo.img} className='h-[100%]' alt="" />
-                                <span className='span-head'>
+                                <span className='span-head text-[24px] font-semibold text-[#242424] sm-max:text-[20px]'>
                                     {rideInfo.car} <br />
-                                    <span className='similar-text'>Or Similar</span>
+                                    <span className='similar-text mt-[-30px] text-[12px] sm-max:mt-0 sm-max:text-[10px]'>Or Similar</span>
                                 </span>
                             </div>
 
-                            <div className="main-item-group-2">
-                                <div className="item-group 1">
+                            <div className="main-item-group-2 flex items-center gap-[60px] sm-max:mt-[10px] sm-max:flex-wrap sm-max:gap-[10px] sm-max:justify-center">
+                                <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 1">
                                     <i className="fa-solid fa-certificate fa-2x text-[#dc635b]"></i>
                                     Top Rated <br /> Chauffeurs
                                 </div>
 
-                                <div className="item-group 2">
+                                <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 2">
                                     <i className="fa-solid fa-file-invoice fa-2x text-[#dc635b]"></i>
                                     Rs. 320 <br /> Toll Included
                                 </div>
 
-                                <div className="item-group 3" style={{ gap: '0' }}>
+                                <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 3" style={{ gap: '0' }}>
                                     <span className='text-[32px] text-[#dc635b] font-bold'>Rs. {rideInfo.rate}</span>
                                     Up to 80 km
                                     <span className={`text-[14px] text-[#dc635b] cursor-pointer`} onClick={() => handleDetailsClick(index)}>
@@ -72,15 +72,15 @@ const RideDetails = () => {
                                     </span>
                                 </div>
 
-                                <button className='ride-select-btn'>
+                                <button className='ride-select-btn h-fit px-[30px] py-[10px] bg-[#dc635b] rounded-[8px] text-white transition-all duration-[0.2s] ease-in-out sm-max:px-[20px] sm-max:py-[8px] sm-max:w-full hover:translate-y-[-5px] hover:shadow-[0_5px_5px_#b3b3b3]'>
                                     <a href={`/finaldetails?pickup-loc=${pickupLocation}&drop-loc=${dropLocation}&pickup-time=${pickupTime}&pickup-date=${pickupDate}&car=${rideInfo.car}&rate=${rideInfo.rate}`}>
                                         SELECT CAR
                                     </a>
                                 </button>
                             </div>
                         </div>
-                        <div className={`extra-info ${activeModal === index ? 'show' : 'hidden'}`}>
-                            <div className="extra-info-content">
+                        <div className={`extra-info mt-[-2px] h-[100px] w-[80%] border-2 border-[#dc635b] rounded-[20px] sm-max:w-full ${activeModal === index ? 'block' : 'hidden'}`}>
+                            <div className="extra-info-content flex justify-center items-center gap-[50px] p-[20px] h-full sm-max:gap-[20px]">
                                 <span className='flex items-center gap-2'>
                                     <img className='h-10' src="https://www.savaari.com/assets/img/facilities_icon1.png" alt="" />
                                     <span>{rideInfo.seater} Seater</span>
@@ -143,12 +143,12 @@ const RideDetailsMobile = () => {
     };
 
     return (
-        <div className="ride-details-container p-2">
-            <span className="ride-information mb-6 text-xl font-bold text-gray-700">
+        <div className="ride-details-container min-h-screen flex flex-col items-center py-[50px] mt-[80px] sm-max:py-[30px] p-2">
+            <span className="ride-information mb-[40px] text-[32px] font-bold text-[#797979] sm-max:text-[20px] sm-max:mb-[30px] sm-max:px-[20px] sm-max:text-center mb-6 text-xl font-bold text-gray-700">
                 {`From ${pickupLocation} to ${dropLocation} on ${pickupDate} at ${pickupTime}`}
             </span>
-
-            <div className="tab-container flex flex-wrap justify-center gap-2 mb-6">
+            
+            <div className="ride-detail-tab-container flex flex-wrap justify-center gap-2 mb-6">
                 {rideInfos.map((rideInfo, index) => (
                     <div
                         key={index}
@@ -164,29 +164,29 @@ const RideDetailsMobile = () => {
                 ))}
             </div>
 
-            <div className="ride-details-wrapper">
+            <div className="ride-details-wrapper w-full mb-[20px] flex flex-col items-center">
                 {rideInfos[activeTab] && (
                     <div className="ride-details border-2 border-[#dc635b] rounded-lg p-4 flex flex-col flex-row items-center">
                         <div className="main-item-group-1 flex flex-row-reverse items-center justify-between w-full">
-                            <img src='https://www.savaari.com/assets/img/cars/Savaari-Wagonr-Cab.jpg' className='h-32 h-40 object-cover' alt={rideInfos[activeTab].car} />
-                            <span className='span-head text-xl font-semibold'>
+                            <img src={rideInfos[activeTab].img} className='h-36 object-cover' alt={rideInfos[activeTab].car} />
+                            <span className='span-head text-[24px] font-semibold text-[#242424] sm-max:text-[20px] text-xl font-semibold'>
                                 {rideInfos[activeTab].car} <br />
-                                <span className='similar-text text-sm text-gray-500'>Or Similar</span>
+                                <span className='similar-text mt-[-30px] text-[12px] sm-max:mt-0 sm-max:text-[10px] text-sm text-gray-500'>Or Similar</span>
                             </span>
                         </div>
 
-                        <div className="main-item-group-2 flex flex-row gap-6 text-center text-left">
-                            <div className="item-group 1 mb-2">
+                        <div className="main-item-group-2 flex items-center gap-[60px] sm-max:mt-[10px] sm-max:flex-wrap sm-max:gap-[10px] sm-max:justify-center flex flex-row gap-6 text-center text-left">
+                            <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 1 mb-2">
                                 <i className="fa-solid fa-certificate fa-2x text-[#dc635b]"></i>
                                 <div>Top Rated <br /> Chauffeurs</div>
                             </div>
 
-                            <div className="item-group 2 mb-2">
+                            <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 2 mb-2">
                                 <i className="fa-solid fa-file-invoice fa-2x text-[#dc635b]"></i>
                                 <div>Rs. 320 <br /> Toll Included</div>
                             </div>
 
-                            <div className="item-group 3 mb-2">
+                            <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 3 mb-2">
                                 <span className='text-xl text-[#dc635b] font-bold'>Rs. {rideInfos[activeTab].rate}</span>
                                 <div>Up to 80 km</div>
                                 <span className='text-sm text-[#dc635b] cursor-pointer' onClick={() => handleDetailsClick(activeTab)}>
@@ -195,14 +195,14 @@ const RideDetailsMobile = () => {
                             </div>
                         </div>
 
-                        <button className='ride-select-btn mt-4 bg-[#dc635b] text-white py-2 px-4 rounded-lg hover:bg-[#b94b47]'>
+                        <button className='ride-select-btn h-fit px-[30px] py-[10px] bg-[#dc635b] rounded-[8px] text-white transition-all duration-[0.2s] ease-in-out sm-max:px-[20px] sm-max:py-[8px] sm-max:w-full hover:translate-y-[-5px] hover:shadow-[0_5px_5px_#b3b3b3] mt-4 bg-[#dc635b] text-white py-2 px-4 rounded-lg hover:bg-[#b94b47]'>
                             <a href={`/finaldetails?pickup-loc=${pickupLocation}&drop-loc=${dropLocation}&pickup-time=${pickupTime}&pickup-date=${pickupDate}`}>SELECT CAR</a>
                         </button>
                     </div>
                 )}
 
-                <div className={`extra-info mt-4 border-2 border-[#dc635b] h-[fit-content] rounded-lg ${activeModal === activeTab ? 'block' : 'hidden'}`}>
-                    <div className="extra-info-content flex flex-col items-start gap-0">
+                <div className={`extra-info mt-[-2px] h-[100px] w-[80%] border-2 border-[#F3C31F] rounded-[20px] sm-max:w-full mt-4 border-2 border-[#dc635b] h-[fit-content] rounded-lg ${activeModal === activeTab ? 'block' : 'hidden'}`}>
+                    <div className="extra-info-content flex justify-center items-center gap-[50px] p-[20px] h-full sm-max:gap-[20px] flex flex-col items-start gap-0">
                         {rideInfos[activeTab] && (
                             <>
                                 <span className='flex items-center gap-2'>

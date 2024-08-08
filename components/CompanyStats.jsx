@@ -4,7 +4,7 @@ import React from 'react'
 const CompanyStats = () => {
     return (
         <div className='company-stats-section relative text-white sm-max:hidden'>
-            <img src="https://www.carzonrent.com/webcor/images/banner/achievementsbanner.png" alt="" />
+            <video src="/govpsutravels.mp4" type="video/mp4" loop autoPlay muted></video>
             <div className="stats-wrapper absolute top-[15%] left-[12%]">
                 
                 <div className="company-stat flex items-center mb-[30px] gap-[40px]">

@@ -19,7 +19,8 @@ const Navbar = () => {
             <div className="nav-interact">
                 <div className="nav-hrefs-wrapper">
                     <a href='/' className="nav-hrefs">
-                        <img src="https://www.carzonrent.com/webcor/images/icons/discount-icon.svg" alt="Discount Icon" />
+                        {/* <img src="https://www.carzonrent.com/webcor/images/icons/discount-icon.svg" alt="Discount Icon" /> */}
+                        <i className="fa-solid fa-percent flex justify-center items-center text-white h-[25px] w-[25px] bg-[#dc635b] rounded-[50%]"></i>
                         Travel Packages
                     </a>
                     <div className="nav-hrefs">
