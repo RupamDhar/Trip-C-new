@@ -12,7 +12,7 @@ const Faq = () => {
             <div className="bg-gray-100 p-5 rounded-lg">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-6">
                     <h3 className="text-3xl font-bold text-gray-800 mb-4 md:mb-0">FAQ's</h3>
-                    <a href="/faqs" className="text-red-400 font-bold text-lg">View All</a>
+                    {/* <a href="/faqs" className="text-red-400 font-bold text-lg">View All</a> */}
                 </div>
                 <div>
                     {faqData.map((faq, index) => (

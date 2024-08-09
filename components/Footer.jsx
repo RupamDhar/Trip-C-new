@@ -12,9 +12,12 @@ const Footer = () => {
                         </div>
                         <div className="widget-content">
                             <ul className="footer-links sm-max:text-[12px]">
-                                <li><a href="/" className="text-white hover:text-yellow-500 transition-colors duration-150">Home</a></li>
-                                <li><a href="/aboutus" className="text-white hover:text-yellow-500 transition-colors duration-150">About Us</a></li>
-                                <li><a href="/contactus" className="text-white hover:text-yellow-500 transition-colors duration-150">Contact Us</a></li>
+                                <li><a href="/" className="text-white hover:text-black transition-colors duration-150">Home</a></li>
+                                <li><a href="/corporatetravels" className="text-white hover:text-black transition-colors duration-150">Corporate Travels</a></li>
+                                <li><a href="/smetravels" className="text-white hover:text-black transition-colors duration-150">SME Travels</a></li>
+                                <li><a href="/aviationtravelsolutions" className="text-white hover:text-black transition-colors duration-150">Aviation Travels</a></li>
+                                <li><a href="/govpsutravel" className="text-white hover:text-black transition-colors duration-150">Gov & PSU Travel</a></li>
+                                <li><a href="/hospitalitytravel" className="text-white hover:text-black transition-colors duration-150">Hospitality Travel</a></li>
                             </ul>
                         </div>
                     </div>
@@ -26,10 +29,10 @@ const Footer = () => {
                         </div>
                         <div className="widget-content">
                             <ul className="footer-links sm-max:text-[12px]">
-                                <li><a href="/" className="text-white hover:text-yellow-500 transition-colors duration-150">Local Travel</a></li>
-                                <li><a href="/" className="text-white hover:text-yellow-500 transition-colors duration-150">Outstation Travel</a></li>
-                                <li><a href="/" className="text-white hover:text-yellow-500 transition-colors duration-150">Airport Transfer</a></li>
-                                <li><a href="/" className="text-white hover:text-yellow-500 transition-colors duration-150">Long Term Rentals</a></li>
+                                <li><a href="/" className="text-white hover:text-black transition-colors duration-150">Local Travel</a></li>
+                                <li><a href="/" className="text-white hover:text-black transition-colors duration-150">Outstation Travel</a></li>
+                                <li><a href="/" className="text-white hover:text-black transition-colors duration-150">Airport Transfer</a></li>
+                                <li><a href="/" className="text-white hover:text-black transition-colors duration-150">Long Term Rentals</a></li>
                             </ul>
                         </div>
                     </div>
@@ -41,8 +44,8 @@ const Footer = () => {
                         </div>
                         <div className="widget-content">
                             <ul className="footer-links sm-max:text-[12px]">
-                                <li><a href="/contactus" className="text-white hover:text-yellow-500 transition-colors duration-150">Contact Us</a></li>
-                                <li><a href="/aboutus" className="text-white hover:text-yellow-500 transition-colors duration-150">About Us</a></li>
+                                <li><a href="/contactus" className="text-white hover:text-black transition-colors duration-150">Contact Us</a></li>
+                                <li><a href="/aboutus" className="text-white hover:text-black transition-colors duration-150">About Us</a></li>
                             </ul>
                         </div>  
                     </div>
@@ -72,12 +75,12 @@ const Footer = () => {
                             <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/carzonrent-india-pvt-ltd"><img src="https://www.carzonrent.com/webcor/images/icons/linkedin.svg" className='h-[32px] sm-max:h-[16px]' alt="LinkedIn" /></a></li>
                         </ul>
                     </div>
-                    <div className="contact-info">
-                        <a href="tel:011-4184 1212" className="phone-link flex items-center text-white hover:text-yellow-500 transition-colors duration-150">
+                    {/* <div className="contact-info">
+                        <a href="tel:011-4184 1212" className="phone-link flex items-center text-white hover:text-black transition-colors duration-150">
                             <img src="https://www.carzonrent.com/webcor/images/icons/mobile phone solid.svg" className="phone-icon h-5 mr-2" alt="Phone Icon" />
                             43083000
                         </a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </footer>

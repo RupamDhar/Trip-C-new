@@ -35,7 +35,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="nav-hrefs">
+                    {/* <div className="nav-hrefs">
                         Services
                         <div className="services-modal">
                             <div className="services-for-biz">
@@ -63,7 +63,7 @@ const Navbar = () => {
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="nav-hrefs">Blog</div>
                     <div className="nav-hrefs"><a href="/aboutus">About Us</a></div>
                     <div className="nav-hrefs"><a href="/contactus">Contact Us</a></div>
@@ -88,7 +88,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="nav-hrefs">
+                    {/* <div className="nav-hrefs">
                         Services
                         <div className="services-modal">
                             <div className="services-for-biz">
@@ -116,7 +116,7 @@ const Navbar = () => {
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="nav-hrefs">Blog</div>
                     <div className="nav-hrefs"><a href="/aboutus">About Us</a></div>
                     <div className="nav-hrefs"><a href="/contactus">Contact Us</a></div>

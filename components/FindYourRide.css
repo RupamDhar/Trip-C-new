@@ -8,7 +8,7 @@
     padding: 30px 0;
     border-radius: 20px;
     color: black;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: #fcf5dc;
     box-shadow: 3px 4px 5px rgb(0, 0, 0, 0.4);
 }
 
@@ -20,7 +20,6 @@
 }
 
 .ride-categories {
-    display: none;
     margin-bottom: 10px;
     width: 100%;
     display: flex;
@@ -59,7 +58,7 @@ select {
     padding: 20px;
     border-radius: 20px;
     color: black;
-    background-color: white;
+    background-color: #fcf5dc;
 }
 
 .location-input,
@@ -74,13 +73,13 @@ select {
     padding: 16px;
     border-radius: 14px;
     border: 1px solid rgb(236, 235, 235);
-    background-color: rgb(236, 235, 235);
+    background-color: rgb(255, 255, 255);
     overflow: hidden;
 }
 .input {
     flex-grow: 1;
     margin-left: 10px;
-    background-color: rgb(236, 235, 235);
+    background-color: rgb(255, 255, 255);
 }
 
 .ride-selection-detail {
@@ -121,6 +120,7 @@ select {
 .cartype-select {
     font-size: 26px;
     font-weight: 700;
+    background-color: white;
 }
 
 .city-options,

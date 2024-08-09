@@ -23,11 +23,11 @@ const FinalDetails = () => {
 
     return (
         <div className='final-details py-[40px] mt-[80px] min-h-screen flex justify-evenly sm-max:flex-col sm-max:items-center sm-max:py-[20px]'>
-            <div className="main-details flex flex-col gap-[20px] w-[40%] h-fit p-[20px] shadow-[0px_5px_15px_rgb(172,_172,_172)] rounded-[20px] sm-max:w-full sm-max:mb-[20px] sm-max:rounded-[10px]">
+            <form className="main-details flex flex-col gap-[20px] w-[40%] h-fit p-[20px] shadow-[0px_5px_15px_rgb(172,_172,_172)] rounded-[20px] sm-max:w-full sm-max:mb-[20px] sm-max:rounded-[10px]">
                 <UserDetails />
                 {/* {mainDetail === 'contact-and-pickup' && <UserDetails setMainDetail={setMainDetail} />}
                 {mainDetail === 'payment' && <Payment setMainDetail={setMainDetail} />} */}
-            </div>
+            </form>
 
             <div className="side-details w-[38%] flex flex-col gap-[30px] sm-max:w-full">
                 <div className="booking-details flex flex-col relative h-fit gap-[6px] pb-[20px] overflow-hidden rounded-[20px] shadow-[0px_5px_15px_rgb(172,_172,_172)]">
@@ -86,24 +86,24 @@ const UserDetails = ({ setMainDetail }) => {
             </div>
             <div className="input-field flex sm-max:flex-col sm-max:items-start">
                 <span className='flex items-center w-[55px] mx-[20px] text-[14px] font-semibold sm-max:w-auto sm-max:mb-[10px]'>NAME</span>
-                <input type="text" className="name final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your name' />
+                <input required type="text" className="name final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your name' />
             </div>
             <div className="input-field flex sm-max:flex-col sm-max:items-start">
                 <span className='flex items-center w-[55px] mx-[20px] text-[14px] font-semibold sm-max:w-auto sm-max:mb-[10px]'>EMAIL</span>
-                <input type="text" className="email final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your email address' />
+                <input required type="text" className="email final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your email address' />
             </div>
             <div className="input-field flex sm-max:flex-col sm-max:items-start">
                 <span className='flex items-center w-[55px] mx-[20px] text-[14px] font-semibold sm-max:w-auto sm-max:mb-[10px]'>MOBILE</span>
-                <input type="number" className="mobile final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your mobile number' />
+                <input required type="number" className="mobile final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your mobile number' />
             </div>
             <div className="input-field flex sm-max:flex-col sm-max:items-start">
                 <span className='flex items-center w-[55px] mx-[20px] text-[14px] font-semibold sm-max:w-auto sm-max:mb-[10px]'>PICKUP</span>
-                <input type="text" className="pickup final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your pickup address' />
+                <input required type="text" className="pickup final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your pickup address' />
                 {/* <PlacePicker country={countries} className="pickup final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder="Enter a place to see its address" onPlaceChange={handlePlaceChange} /> */}
             </div>
             <div className="input-field flex sm-max:flex-col sm-max:items-start">
                 <span className='flex items-center w-[55px] mx-[20px] text-[14px] font-semibold sm-max:w-auto sm-max:mb-[10px]'>DROP</span>
-                <input type="text" className="drop final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your drop address' />
+                <input required type="text" className="drop final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your drop address' />
             </div>
             <button className='proceed-btn bg-[var(--theme-yellow)] text-white py-[8px] mt-[10px] rounded-[10px]' onClick={() => setMainDetail('payment')}>PROCEED</button>
         </>
