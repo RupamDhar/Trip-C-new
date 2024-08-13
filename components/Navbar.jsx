@@ -14,7 +14,9 @@ const Navbar = () => {
     return (
         <div className="carzonrent-navbar">
             <div className="left-logo">
-                <img src="/Trip-C_logo.jpeg" alt="" />
+                <a href="/">
+                    <img src="/Trip-C_logo.jpeg" alt="" />
+                </a>
             </div>
             <div className="nav-interact">
                 <div className="nav-hrefs-wrapper">
@@ -122,12 +124,12 @@ const Navbar = () => {
                     <div className="nav-hrefs"><a href="/contactus">Contact Us</a></div>
                 </div>
             </div>
-            <div className="login-signup-btn" onClick={()=>setToggleForm(!toggleForm)}>
+            <div className="login-signup-btn" onClick={() => setToggleForm(!toggleForm)}>
                 <i className="fa-solid fa-user"></i>
                 <span className='sm-max:hidden'>Login/SignUp</span>
             </div>
 
-            {toggleForm && <LoginForm setToggleForm={setToggleForm}/>}
+            {toggleForm && <LoginForm setToggleForm={setToggleForm} />}
 
         </div>
     );

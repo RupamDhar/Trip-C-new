@@ -11,7 +11,7 @@ const FindYourRide = () => {
 
     const [pickupCity, setPickupCity] = useState('Ahmedabad');
     const [dropCity, setDropCity] = useState('Ahmedabad');
-    const [pickupDate, setPickupDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
+    const [pickupDate, setPickupDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', day: '2-digit', month: 'short' }));
     const [pickupTime, setPickupTime] = useState('05:00');
 
     useEffect(() => {
@@ -228,9 +228,10 @@ const LocalRideSelect = ({ pickupCity, setPickupCity, dropCity, setDropCity, pic
                 <div className="date-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
                     <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
                     <DatePicker
+                        dateFormat={'dd/MM/yyyy'}
                         className='input flex-grow ml-[10px] bg-white ml-2'
                         selected={pickupDate}
-                        onChange={date => setPickupDate(date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }))}
+                        onChange={date => setPickupDate(date)}
                     />
                 </div>
             </div>
@@ -332,6 +333,7 @@ const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pi
                     <div className="date-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
                         <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
                         <DatePicker
+                            dateFormat={'dd/MM/yyyy'}
                             className='input flex-grow ml-[10px] bg-white ml-2'
                             selected={pickupDate}
                             onChange={date => setPickupDate(date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }))}
@@ -422,6 +424,7 @@ const AirportTranfer = () => {
                 <div className="date-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
                     <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
                     <DatePicker
+                        dateFormat={'dd/MM/yyyy'}
                         className='input flex-grow ml-[10px] bg-white ml-2'
                         selected={selectedDate}
                         onChange={date => setSelectedDate(date)}
@@ -528,6 +531,7 @@ const LongTermRentals = () => {
                 <div className="date-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
                     <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
                     <DatePicker
+                        dateFormat={'dd/MM/yyyy'}
                         className='input flex-grow ml-[10px] bg-white ml-2'
                         selected={pickupDate}
                         onChange={date => setPickupDate(date)}
@@ -542,6 +546,7 @@ const LongTermRentals = () => {
                 <div className="date-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
                     <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
                     <DatePicker
+                        dateFormat={'dd/MM/yyyy'}
                         className='input flex-grow ml-[10px] bg-white ml-2'
                         selected={returnDate}
                         onChange={date => setReturnDate(date)}
