@@ -21,7 +21,7 @@ const FindYourRide = () => {
 
     useEffect(() => {
         console.log(pickupCity);
-        console.log(dropCity);
+        console.log(dropCity);  
         console.log(pickupDate);
         console.log(pickupTime);
         console.log(ridePackage);
