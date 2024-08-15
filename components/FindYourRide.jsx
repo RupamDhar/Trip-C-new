@@ -13,6 +13,7 @@ const FindYourRide = () => {
     const [dropCity, setDropCity] = useState('Ahmedabad');
     const [pickupDate, setPickupDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', day: '2-digit', month: 'short' }));
     const [pickupTime, setPickupTime] = useState('05:00');
+    const [ridePackage, setRidePackage] = useState(4); 
 
     useEffect(() => {
         AOS.init({ duration: 1000 });
@@ -20,8 +21,10 @@ const FindYourRide = () => {
 
     useEffect(() => {
         console.log(pickupCity);
+        console.log(dropCity);
         console.log(pickupDate);
         console.log(pickupTime);
+        console.log(ridePackage);
     })
 
     const [selectedOption, setSelectedOption] = useState('Outstation Travel');
@@ -107,6 +110,8 @@ const FindYourRide = () => {
                     setPickupTime={setPickupTime}
                     pickupDate={pickupDate}
                     setPickupDate={setPickupDate}
+                    ridePackage={ridePackage}
+                    setRidePackage={setRidePackage}
                 />
             }
 
@@ -277,10 +282,11 @@ const LocalRideSelect = ({ pickupCity, setPickupCity, dropCity, setDropCity, pic
 
 
 
-const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pickupTime, setPickupTime, pickupDate, setPickupDate }) => {
+const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pickupTime, setPickupTime, pickupDate, setPickupDate, ridePackage, setRidePackage }) => {
     const citiesFrom = ["Ahmedabad", "Bangalore", "Chennai", "Delhi", "Gurgaon", "Hyderabad", "Kolkata", "Mumbai", "Noida", "Pune", "Lucknow"];
     const citiesTo = ["Ahmedabad", "Bangalore", "Chennai", "Delhi", "Gurgaon", "Hyderabad", "Kolkata", "Mumbai", "Noida", "Pune", "Lucknow"];
     const timestamps = ["05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30"];
+    const durations = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
 
     const handleCityChange = (event) => {
@@ -296,10 +302,14 @@ const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pi
         setPickupTime(event.target.value);
     };
 
+    const handlePackageChange = (event) => {
+        setRidePackage(parseInt(event.target.value, 10));
+    }
+
     return (
         <>
             <div className="ride-selection flex flex-wrap justify-evenly items-center w-[95%] h-fit p-[20px] rounded-[20px] text-black bg-[#fcf5dc] sm-max:h-fit sm-max:w-full sm-max:gap-[10px] sm-max:flex-col sm-max:shadow-none">
-                <div className="ride-selection-detail w-[20%] h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
+                <div className="ride-selection-detail h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
                     <div className="duration selection-header ">
                         Pickup Location
                     </div>
@@ -313,7 +323,7 @@ const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pi
                     </div>
                 </div>
                 <i className="fa-solid fa-right-left text-slate-400"></i>
-                <div className="ride-selection-detail w-[20%] h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
+                <div className="ride-selection-detail h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
                     <div className="duration selection-header ">
                         Drop Location
                     </div>
@@ -326,7 +336,7 @@ const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pi
                         </select>
                     </div>
                 </div>
-                <div className="ride-selection-detail w-[20%] h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
+                <div className="ride-selection-detail h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
                     <div className="duration selection-header ">
                         Pickup Date
                     </div>
@@ -334,13 +344,13 @@ const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pi
                         <img src="https://www.carzonrent.com/webcor/images/icons/calenderyellowgredient.svg" className='h-[16px]' alt="" />
                         <DatePicker
                             dateFormat={'dd/MM/yyyy'}
-                            className='input flex-grow ml-[10px] bg-white ml-2'
+                            className='inputml-[10px] bg-white ml-2'
                             selected={pickupDate}
                             onChange={date => setPickupDate(date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }))}
                         />
                     </div>
                 </div>
-                <div className="ride-selection-detail w-[20%] h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
+                <div className="ride-selection-detail h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
                     <div className="duration selection-header ">
                         Pickup At
                     </div>
@@ -349,6 +359,20 @@ const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pi
                         <select className='input flex-grow ml-[10px] bg-white' name="pickupTime" value={pickupTime} onChange={handleTimeChange}>
                             {timestamps.map((time, index) => (
                                 <option className='city-options' value={time} key={index}>{time}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+                <div className="ride-selection-detail h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
+                    <div className="duration selection-header ">
+                        Package
+                    </div>
+                    <div className="package-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
+                        <img src="https://www.carzonrent.com/webcor/images/icons/packageicon.svg" className='h-[16px]' alt="" />
+                        {/* <input type="text" className='input flex-grow ml-[10px] bg-white' placeholder='To Station' /> */}
+                        <select className='input flex-grow ml-[10px] bg-white' name="duration" id="" onChange={handlePackageChange}>
+                            {durations.map((duration, index) => (
+                                <option className='city-options' value={duration} key={index}>{duration} Hours</option>
                             ))}
                         </select>
                     </div>
@@ -367,7 +391,7 @@ const OutStationTravel = ({ pickupCity, setPickupCity, dropCity, setDropCity, pi
 
 
 
-const AirportTranfer = () => {
+const AirportTranfer = ({ pickupCity, setPickupCity, dropCity, setDropCity, pickupTime, setPickupTime, pickupDate, setPickupDate }) => {
     const cities = ["Ahmedabad", "Bangalore", "Chennai", "Delhi", "Gurgaon", "Hyderabad", "Kolkata", "Mumbai", "Noida", "Pune", "Lucknow"];
     const timestamps = ["05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30"];
     const durations = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -404,7 +428,22 @@ const AirportTranfer = () => {
         <div className="ride-selection flex flex-wrap justify-evenly items-center w-[95%] h-fit p-[20px] rounded-[20px] text-black bg-[#fcf5dc] sm-max:h-fit sm-max:w-full sm-max:gap-[10px] sm-max:flex-col sm-max:shadow-none">
             <div className="ride-selection-detail w-[20%] h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-one">
                 <div className="city selection-header ">
-                    Pickup City
+                    Pickup
+                </div>
+                <div className="location-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
+                    <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
+                    {/* <input type="text" className='input flex-grow ml-[10px] bg-white' placeholder='From Station' /> */}
+                    <select className='input flex-grow ml-[10px] bg-white' name="city" id="">
+                        {cities.map((city, index) => (
+                            <option className='city-options' value={city} key={index}>{city}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+            
+            <div className="ride-selection-detail w-[20%] h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-one">
+                <div className="city selection-header ">
+                    Drop
                 </div>
                 <div className="location-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
                     <img src="https://www.carzonrent.com/webcor/images/icons/maplocation.svg" className='h-[16px]' alt="" />
@@ -446,20 +485,6 @@ const AirportTranfer = () => {
                     </select>
                 </div>
             </div>
-            <div className="ride-selection-detail w-[20%] h-fit p-[0_19px] flex-grow cursor-pointer sm-max:w-full sm-max:p-[5px_10px] sm-max:border sm-max:border-[#79797920] rsd-four">
-                <div className="duration selection-header ">
-                    Package
-                </div>
-                <div className="package-input flex justify-start items-center max-w-full p-[16px] rounded-[14px] border border-[#ececec] bg-white overflow-hidden sm-max:w-full">
-                    <img src="https://www.carzonrent.com/webcor/images/icons/packageicon.svg" className='h-[16px]' alt="" />
-                    {/* <input type="text" className='input flex-grow ml-[10px] bg-white' placeholder='To Station' /> */}
-                    <select className='input flex-grow ml-[10px] bg-white' name="duration" id="">
-                        {durations.map((duration, index) => (
-                            <option className='city-options' value={duration} key={index}>{duration} Hours</option>
-                        ))}
-                    </select>
-                </div>
-            </div>
         </div>
     )
 }
@@ -473,7 +498,7 @@ const AirportTranfer = () => {
 
 
 
-const LongTermRentals = () => {
+const LongTermRentals = ({ pickupCity, setPickupCity, dropCity, setDropCity, pickupTime, setPickupTime, pickupDate, setPickupDate }) => {
     const cities = ["Ahmedabad", "Bangalore", "Chennai", "Delhi", "Gurgaon", "Hyderabad", "Kolkata", "Mumbai", "Noida", "Pune", "Lucknow"];
     const timestamps = ["05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30"];
     const durations = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -495,7 +520,7 @@ const LongTermRentals = () => {
         },
     ]);
 
-    const [pickupDate, setPickupDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
+    // const [pickupDate, setPickupDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
     const [returnDate, setReturnDate] = useState(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }));
     const [selectedType, setSelectedType] = useState('');
 

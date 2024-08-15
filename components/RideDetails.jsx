@@ -62,19 +62,19 @@ const RideDetails = () => {
 
                             <div className="main-item-group-2 flex items-center gap-[60px] sm-max:mt-[10px] sm-max:flex-wrap sm-max:gap-[10px] sm-max:justify-center">
                                 <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 1">
-                                    <i className="fa-solid fa-certificate fa-2x text-[#dc635b]"></i>
+                                    <i className="fa-solid fa-certificate fa-2x text-[#f78f25]"></i>
                                     Top Rated <br /> Chauffeurs
                                 </div>
 
                                 <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 3" style={{ gap: '0' }}>
-                                    <span className='text-[32px] text-[#dc635b] font-bold'>Rs. {rideInfo.rate}</span>
+                                    <span className='text-[32px] text-[#f78f25] font-bold'>Rs. {rideInfo.rate}</span>
                                     Up to 80 km
-                                    <span className={`text-[14px] text-[#dc635b] cursor-pointer`} onClick={() => handleDetailsClick(index)}>
+                                    <span className={`text-[14px] text-[#f78f25] cursor-pointer`} onClick={() => handleDetailsClick(index)}>
                                         Details
                                     </span>
                                 </div>
 
-                                <button className='ride-select-btn h-fit px-[30px] py-[10px] bg-[#dc635b] rounded-[8px] text-white transition-all duration-[0.2s] ease-in-out sm-max:px-[20px] sm-max:py-[8px] sm-max:w-full hover:translate-y-[-5px] hover:shadow-[0_5px_5px_#b3b3b3]'>
+                                <button className='ride-select-btn h-fit px-[30px] py-[10px] bg-[#f78f25] rounded-[8px] text-white transition-all duration-[0.2s] ease-in-out sm-max:px-[20px] sm-max:py-[8px] sm-max:w-full hover:translate-y-[-5px] hover:shadow-[0_5px_5px_#b3b3b3]'>
                                     <a href={`/finaldetails?pickup-loc=${pickupLocation}&drop-loc=${dropLocation}&pickup-time=${pickupTime}&pickup-date=${pickupDate}&car=${rideInfo.car}&rate=${rideInfo.rate}`}>
                                         SELECT CAR
                                     </a>
@@ -82,27 +82,27 @@ const RideDetails = () => {
                             </div>
                         </div>
                         <div className={`extra-info bg-white overflow-hidden mt-[-2px] h-fit w-[80%] shadow-md rounded-[20px] sm-max:w-full ${activeModal === index ? 'block' : 'hidden'}`}>
-                            <div className="tabs flex border-b border-[#dc635b]">
+                            <div className="tabs flex border-b border-[#f78f25]">
                                 <button
-                                    className={`tab-btn px-4 py-2 font-semibold ${activeTab === 0 ? 'bg-[#dc635b] text-white' : 'bg-white text-[#797979]'} border-r`}
+                                    className={`tab-btn px-4 py-2 font-semibold ${activeTab === 0 ? 'bg-[#f78f25] text-white' : 'bg-white text-[#797979]'} border-r`}
                                     onClick={() => handleTabClick(0)}
                                 >
                                     Inclusions
                                 </button>
                                 <button
-                                    className={`tab-btn px-4 py-2 font-semibold ${activeTab === 1 ? 'bg-[#dc635b] text-white' : 'bg-white text-[#797979]'} border-r`}
+                                    className={`tab-btn px-4 py-2 font-semibold ${activeTab === 1 ? 'bg-[#f78f25] text-white' : 'bg-white text-[#797979]'} border-r`}
                                     onClick={() => handleTabClick(1)}
                                 >
                                     Exclusions
                                 </button>
                                 <button
-                                    className={`tab-btn px-4 py-2 font-semibold ${activeTab === 2 ? 'bg-[#dc635b] text-white' : 'bg-white text-[#797979]'} border-r`}
+                                    className={`tab-btn px-4 py-2 font-semibold ${activeTab === 2 ? 'bg-[#f78f25] text-white' : 'bg-white text-[#797979]'} border-r`}
                                     onClick={() => handleTabClick(2)}
                                 >
                                     Facilities
                                 </button>
                                 <button
-                                    className={`tab-btn px-4 py-2 font-semibold ${activeTab === 3 ? 'bg-[#dc635b] text-white' : 'bg-white text-[#797979]'} `}
+                                    className={`tab-btn px-4 py-2 font-semibold ${activeTab === 3 ? 'bg-[#f78f25] text-white' : 'bg-white text-[#797979]'} `}
                                     onClick={() => handleTabClick(3)}
                                 >
                                     T&C
@@ -222,7 +222,7 @@ const RideDetailsMobile = () => {
                 {rideInfos.map((rideInfo, index) => (
                     <div
                         key={index}
-                        className={`tab p-1 cursor-pointer rounded-lg overflow-hidden border border-gray-900 transition-transform duration-300 ${activeTab === index ? 'border-[#dc635b]' : ''}`}
+                        className={`tab p-1 cursor-pointer rounded-lg overflow-hidden border border-gray-900 transition-transform duration-300 ${activeTab === index ? 'border-[#f78f25]' : ''}`}
                         onClick={() => setActiveTab(index)}
                     >
                         <div className="img-container w-full flex justify-center"><img className='h-10 object-fit' src={rideInfo.img} alt={rideInfo.car} /></div>
@@ -236,7 +236,7 @@ const RideDetailsMobile = () => {
 
             <div className="ride-details-wrapper w-full mb-[20px] flex flex-col items-center">
                 {rideInfos[activeTab] && (
-                    <div className="ride-details border-2 border-[#dc635b] rounded-lg p-4 flex flex-col flex-row items-center">
+                    <div className="ride-details border-2 border-[#f78f25] rounded-lg p-4 flex flex-col flex-row items-center">
                         <div className="main-item-group-1 flex flex-row-reverse items-center justify-between w-full">
                             <img src={rideInfos[activeTab].img} className='h-36 object-cover' alt={rideInfos[activeTab].car} />
                             <span className='span-head text-[24px] font-semibold text-[#242424] sm-max:text-[20px] text-xl font-semibold'>
@@ -247,31 +247,31 @@ const RideDetailsMobile = () => {
 
                         <div className="main-item-group-2 flex items-center gap-[60px] sm-max:mt-[10px] sm-max:flex-wrap sm-max:gap-[10px] sm-max:justify-center flex flex-row gap-6 text-center text-left">
                             <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 1 mb-2">
-                                <i className="fa-solid fa-certificate fa-2x text-[#dc635b]"></i>
+                                <i className="fa-solid fa-certificate fa-2x text-[#f78f25]"></i>
                                 <div>Top Rated <br /> Chauffeurs</div>
                             </div>
 
                             <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 2 mb-2">
-                                <i className="fa-solid fa-file-invoice fa-2x text-[#dc635b]"></i>
+                                <i className="fa-solid fa-file-invoice fa-2x text-[#f78f25]"></i>
                                 <div>Rs. 320 <br /> Toll Included</div>
                             </div>
 
                             <div className="item-group flex flex-col gap-[10px] items-center text-center text-[14px] sm-max:text-[12px] 3 mb-2">
-                                <span className='text-xl text-[#dc635b] font-bold'>Rs. {rideInfos[activeTab].rate}</span>
+                                <span className='text-xl text-[#f78f25] font-bold'>Rs. {rideInfos[activeTab].rate}</span>
                                 <div>Up to 80 km</div>
-                                <span className='text-sm text-[#dc635b] cursor-pointer' onClick={() => handleDetailsClick(activeTab)}>
+                                <span className='text-sm text-[#f78f25] cursor-pointer' onClick={() => handleDetailsClick(activeTab)}>
                                     Details
                                 </span>
                             </div>
                         </div>
 
-                        <button className='ride-select-btn h-fit px-[30px] py-[10px] bg-[#dc635b] rounded-[8px] text-white transition-all duration-[0.2s] ease-in-out sm-max:px-[20px] sm-max:py-[8px] sm-max:w-full hover:translate-y-[-5px] hover:shadow-[0_5px_5px_#b3b3b3] mt-4 bg-[#dc635b] text-white py-2 px-4 rounded-lg hover:bg-[#b94b47]'>
+                        <button className='ride-select-btn h-fit px-[30px] py-[10px] bg-[#f78f25] rounded-[8px] text-white transition-all duration-[0.2s] ease-in-out sm-max:px-[20px] sm-max:py-[8px] sm-max:w-full hover:translate-y-[-5px] hover:shadow-[0_5px_5px_#b3b3b3] mt-4 bg-[#f78f25] text-white py-2 px-4 rounded-lg hover:bg-[#b94b47]'>
                             <a href={`/finaldetails?pickup-loc=${pickupLocation}&drop-loc=${dropLocation}&pickup-time=${pickupTime}&pickup-date=${pickupDate}`}>SELECT CAR</a>
                         </button>
                     </div>
                 )}
 
-                <div className={`extra-info mt-[-2px] h-[100px] w-[80%] border-2 border-[#F3C31F] rounded-[20px] sm-max:w-full mt-4 border-2 border-[#dc635b] h-[fit-content] rounded-lg ${activeModal === activeTab ? 'block' : 'hidden'}`}>
+                <div className={`extra-info mt-[-2px] h-[100px] w-[80%] border-2 border-[#F3C31F] rounded-[20px] sm-max:w-full mt-4 border-2 border-[#f78f25] h-[fit-content] rounded-lg ${activeModal === activeTab ? 'block' : 'hidden'}`}>
                     <div className="extra-info-content flex justify-center items-center gap-[50px] p-[20px] h-full sm-max:gap-[20px] flex flex-col items-start gap-0">
                         {rideInfos[activeTab] && (
                             <>
