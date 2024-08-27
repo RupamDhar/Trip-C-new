@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import React from 'react'
 import { APILoader, PlacePicker } from '@googlemaps/extended-component-library/react';
+import { LoadScript, StandaloneSearchBox } from '@react-google-maps/api';
 // import './FinalDetails.css'
 
 const FinalDetails = () => {
@@ -34,7 +35,7 @@ const FinalDetails = () => {
                     <div className="booking-detail-header mb-[14px] py-[10px] text-white text-center bg-[var(--theme-yellow)]">YOUR BOOKING DETAILS</div>
                     <div className="info p-[0_20px] flex sm-max:flex-col sm-max:items-start">
                         <span className='w-[150px] font-bold sm-max:w-auto text-[14px]'>Itinerary : </span>
-                        {pickupLocation} &gt; {dropLocation==='Ahmedabad'?'':dropLocation}
+                        {pickupLocation} &gt; {dropLocation === 'Ahmedabad' ? '' : dropLocation}
                     </div>
                     <div className="info p-[0_20px] flex sm-max:flex-col sm-max:items-start">
                         <span className='w-[150px] font-bold sm-max:w-auto text-[14px]'>Pickup Date : </span>
@@ -65,22 +66,55 @@ const FinalDetails = () => {
 }
 
 const UserDetails = ({ setMainDetail }) => {
+    const [formattedPickup, setFormattedPickup] = useState('');
+    const [formattedDrop, setFormattedDrop] = useState('');
+    const [pickupSuggestions, setPickupSuggestions] = useState([]);
+    const [dropSuggestions, setDropSuggestions] = useState([]);
 
-    const [formattedAddress, setFormattedAddress] = React.useState('');
-    const handlePlaceChange = (e) => {
-        setFormattedAddress(e.target.value?.formattedAddress ?? '');
+    const fetchLocationSuggestions = async (query, setSuggestions) => {
+        if (query.length < 3) return; // Start searching after 3 characters
+
+        console.log(`Fetching suggestions for query: ${query}`); // Debug log
+
+        try {
+            const response = await fetch(`https://graphhopper.com/api/1/geocode?q=${query}&locale=en&key=API_KEY`);
+            const data = await response.json();
+
+            console.log('API Response:', data); // Debug log
+
+            const suggestions = data.hits.map(hit => ({
+                label: hit.name,
+                address: hit.street ? `${hit.street}, ${hit.city}` : hit.city,
+                value: hit.point
+            }));
+
+            setSuggestions(suggestions);
+
+            console.log('Suggestions set:', suggestions); // Debug log
+        } catch (error) {
+            console.error('Error fetching location suggestions:', error); // Error handling
+        }
     };
-    const countries = [];
+
+    const handlePickupChange = (e) => {
+        const query = e.target.value;
+        setFormattedPickup(query); // Update the input field value
+        fetchLocationSuggestions(query, setPickupSuggestions);
+    };
+
+    const handleDropChange = (e) => {
+        const query = e.target.value;
+        setFormattedDrop(query); // Update the input field value
+        fetchLocationSuggestions(query, setDropSuggestions);
+    };
+
+    const handleSuggestionSelect = (suggestion, setFormattedAddress, setSuggestions) => {
+        setFormattedAddress(suggestion.label);
+        setSuggestions([]); // Clear suggestions after selection
+    };
 
     return (
         <>
-            <APILoader apiKey="API_KEY" solutionChannel="GMP_GCC_placepicker_v1" />
-            {/* <div class="container">
-                <PlacePicker country={countries} placeholder="Enter a place to see its address" onPlaceChange={handlePlaceChange} />
-                <div className="result">
-                    {formattedAddress}
-                </div>
-            </div> */}
             <div className="final-detail-header relative text-center my-[12px] text-[18px] font-bold border-t-2 border-b-2 border-[var(--theme-yellow)] sm-max:text-[16px]">
                 CONTACT & PICKUP DETAILS
             </div>
@@ -96,19 +130,61 @@ const UserDetails = ({ setMainDetail }) => {
                 <span className='flex items-center w-[55px] mx-[20px] text-[14px] font-semibold sm-max:w-auto sm-max:mb-[10px]'>MOBILE</span>
                 <input required type="number" className="mobile final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your mobile number' />
             </div>
-            <div className="input-field flex sm-max:flex-col sm-max:items-start">
+            <div className="input-field flex sm-max:flex-col sm-max:items-start relative">
                 <span className='flex items-center w-[55px] mx-[20px] text-[14px] font-semibold sm-max:w-auto sm-max:mb-[10px]'>PICKUP</span>
-                <input required type="text" className="pickup final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your pickup address' />
-                {/* <PlacePicker country={countries} className="pickup final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder="Enter a place to see its address" onPlaceChange={handlePlaceChange} /> */}
+                <input 
+                    required 
+                    type="text" 
+                    className="pickup final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" 
+                    placeholder='Enter your pickup address' 
+                    value={formattedPickup}
+                    onChange={handlePickupChange} 
+                />
+                {pickupSuggestions.length > 0 && (
+                    <div className="suggestions absolute top-full left-0 right-0 bg-white border border-gray-300 z-10 max-h-[200px] overflow-auto shadow-md">
+                        {pickupSuggestions.map((suggestion, index) => (
+                            <div 
+                                key={index} 
+                                className="suggestion-item p-[10px] cursor-pointer hover:bg-gray-100"
+                                onClick={() => handleSuggestionSelect(suggestion, setFormattedPickup, setPickupSuggestions)}
+                            >
+                                <strong>{suggestion.label}</strong>
+                                <p className="text-[12px] text-gray-600">{suggestion.address}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
-            <div className="input-field flex sm-max:flex-col sm-max:items-start">
+            <div className="input-field flex sm-max:flex-col sm-max:items-start relative">
                 <span className='flex items-center w-[55px] mx-[20px] text-[14px] font-semibold sm-max:w-auto sm-max:mb-[10px]'>DROP</span>
-                <input required type="text" className="drop final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" placeholder='Enter your drop address' />
+                <input 
+                    required 
+                    type="text" 
+                    className="drop final-detail-input flex-grow border-b border-[#e3e3e3] text-[14px] p-[4px] pl-[10px] sm-max:w-full" 
+                    placeholder='Enter your drop address' 
+                    value={formattedDrop}
+                    onChange={handleDropChange} 
+                />
+                {dropSuggestions.length > 0 && (
+                    <div className="suggestions absolute top-full left-0 right-0 bg-white border border-gray-300 z-10 max-h-[200px] overflow-auto shadow-md">
+                        {dropSuggestions.map((suggestion, index) => (
+                            <div 
+                                key={index} 
+                                className="suggestion-item p-[10px] cursor-pointer hover:bg-gray-100"
+                                onClick={() => handleSuggestionSelect(suggestion, setFormattedDrop, setDropSuggestions)}
+                            >
+                                <strong>{suggestion.label}</strong>
+                                <p className="text-[12px] text-gray-600">{suggestion.address}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
             <button className='proceed-btn bg-[var(--theme-yellow)] text-white py-[8px] mt-[10px] rounded-[10px]' onClick={() => setMainDetail('payment')}>PROCEED</button>
         </>
-    )
-}
+    );
+};
+
 
 
 const TabContent = ({ activeTab }) => {
